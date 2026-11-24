@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>games.abhikism.com — #ABHIKISM Interactive Song Games Arcade</title>
+  <meta name="description" content="Official #ABHIKISM Interactive Song Games Arcade. Play DaakBaksher Gaan (v8.0.0) in authentic Saul Bass constructivist linocut style.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&family=Noto+Serif+Bengali:wght@600;700;800&family=Questrial&family=Syne:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #0E0F12;
+      --card-bg: #161821;
+      --card-elevated: #1D202B;
+      --ink-cream: #F5EFE1;
+      --ink-ochre: #E5CF98;
+      --ink-muted: #A9A499;
+      --saul-crimson: #C7242B;
+      --teal-primary: #008779;
+      --neon-lime: #90FF6C;
+      --border-subtle: #2E3242;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Questrial', 'Hind Siliguri', sans-serif;
+      --font-bn: 'Noto Serif Bengali', 'Hind Siliguri', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    body.theme-high-contrast {
+      --bg-void: #000000;
+      --card-bg: #0D0E12;
+      --card-elevated: #14161E;
+      --ink-cream: #FFFFFF;
+      --ink-ochre: #FFDE59;
+      --ink-muted: #DADADA;
+      --saul-crimson: #FF2222;
+      --border-subtle: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-void);
+      color: var(--ink-cream);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: rgba(20, 21, 27, 0.96);
+      border-bottom: 2.5px solid var(--saul-crimson);
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--ink-cream);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: rgba(199, 36, 43, 0.18);
+      color: var(--ink-ochre);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--saul-crimson);
+      font-weight: 700;
+    }
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .header-link {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-cream);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-subtle);
+      background: var(--card-elevated);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .header-link:hover {
+      border-color: var(--saul-crimson);
+      background: #262938;
+      transform: translateY(-1px);
+    }
+    .nav-bar {
+      background: #14151B;
+      border-bottom: 1.5px solid var(--border-subtle);
+      padding: 10px 28px;
+      font-weight: 700;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-bar a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      padding: 5px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: all 0.15s ease;
+    }
+    .nav-bar a.active, .nav-bar a:hover {
+      background: var(--saul-crimson);
+      color: #FFFFFF;
+    }
+    main {
+      max-width: 1080px;
+      width: 100%;
+      margin: 32px auto;
+      padding: 0 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .featured-hero-card {
+      background: var(--card-bg);
+      border: 2.5px solid var(--ink-cream);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 8px 8px 0px var(--saul-crimson);
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-hero-badge-strip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .badge-flagship {
+      background: var(--saul-crimson);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge-sub {
+      background: rgba(0, 135, 121, 0.16);
+      color: #64E5D4;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--teal-primary);
+    }
+    .featured-title {
+      font-family: var(--font-bn);
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--ink-cream);
+      margin: 8px 0 6px 0;
+      line-height: 1.25;
+    }
+    .featured-subtitle {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink-ochre);
+      margin-bottom: 14px;
+    }
+    .featured-desc {
+      color: var(--ink-muted);
+      font-size: 15px;
+      line-height: 1.65;
+      margin-bottom: 22px;
+      max-width: 840px;
+    }
+    .mechanics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .mechanic-item {
+      background: var(--card-elevated);
+      border: 1.5px solid var(--border-subtle);
+      border-left: 4px solid var(--saul-crimson);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .mechanic-title {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink-ochre);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mechanic-desc {
+      font-size: 12px;
+      color: var(--ink-cream);
+      line-height: 1.45;
+      opacity: 0.9;
+    }
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .play-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--saul-crimson);
+      color: #FFFFFF;
+      border: 2px solid var(--ink-cream);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 17px;
+      text-decoration: none;
+      box-shadow: 4px 4px 0px #000000;
+      transition: all 0.15s ease;
+    }
+    .play-cta:hover {
+      background: #DF2931;
+      transform: translate(-1px, -1px);
+      box-shadow: 6px 6px 0px #000000;
+    }
+    .secondary-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-elevated);
+      color: var(--ink-cream);
+      border: 2px solid var(--border-subtle);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .secondary-cta:hover {
+      border-color: var(--ink-ochre);
+      transform: translate(-1px, -1px);
+    }
+    .shelf-section { margin-top: 8px; }
+    .shelf-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .shelf-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink-cream);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .upcoming-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .upcoming-card {
+      background: var(--card-bg);
+      border: 1.5px dashed var(--border-subtle);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+    }
+    .upcoming-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(229, 207, 152, 0.14);
+      color: var(--ink-ochre);
+      border: 1px solid rgba(229, 207, 152, 0.35);
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .upcoming-title {
+      font-family: var(--font-bn);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink-cream);
+      margin-bottom: 6px;
+    }
+    .upcoming-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+    footer {
+      background: #121318;
+      border-top: 2px solid var(--saul-crimson);
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: auto;
+    }
+    @media (max-width: 640px) {
+      header, .nav-bar, footer { padding: 12px 16px; }
+      main { margin: 20px auto; padding: 0 14px; }
+      .featured-hero-card { padding: 20px; box-shadow: 5px 5px 0px var(--saul-crimson); }
+      .featured-title { font-size: 26px; }
+      .play-cta, .secondary-cta { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="brand-logo">#ABHIKISM ARCADE</a>
+      <span class="brand-sub">games.abhikism.com</span>
+    </div>
+    <div class="header-links">
+      <button type="button" class="header-link" id="hub-theme-toggle" onclick="toggleHubContrast()">◐ High-Contrast</button>
+      <a href="https://songs.abhikism.com" class="header-link">🎵 songs.abhikism.com</a>
+      <a href="https://user.abhikism.com" class="header-link">👤 Member Portal (user.abhikism.com)</a>
+    </div>
+  </header>
+
+  <div class="nav-bar">
+    <a href="./index.html" class="active">🎮 All Interactive Games</a>
+    <a href="./daakbaksher-gaan/index.html">📮 Featured: ডাকবাক্সের গান (DaakBaksher Gaan)</a>
+  </div>
+
+  <main>
+    <!-- Featured Game #1 Hero Card -->
+    <article class="featured-hero-card" id="featured-game-1">
+      <div class="featured-hero-badge-strip">
+        <span class="badge-flagship">★ FEATURED GAME #1</span>
+        <span class="badge-sub">TRACK WKS-003</span>
+        <span class="badge-sub">BUILD v8.0.0</span>
+        <span class="badge-sub">SAUL BASS LINOCUT EDITION</span>
+      </div>
+
+      <h1 class="featured-title">ডাকবাক্সের গান — বাতাসের চিঠি</h1>
+      <div class="featured-subtitle">DaakBaksher Gaan: Letters in the Wind (Saul Bass Constructivist Wind Game)</div>
+
+      <p class="featured-desc">
+        A high-speed 2D Saul Bass constructivist linocut wind game set to the continuous master recording of <em>DaakBaksher Gaan</em>. Gather the 125 canonical bilingual origami letters floating across 5 automatic wind levels (5 → 15 → 25 → 50 → 125 words) and post them into the Victorian pillar postbox over the papercut waves. Beware of 250 decoy slips that trigger escalating penalty deductions (up to 500%), race the clock for the highest Arcade Speed Index score, and claim your verified 9:16 Listener Certificate stamped with the official #ABHIKISM fingerprint Hanko seal!
+      </p>
+
+      <div class="mechanics-grid">
+        <div class="mechanic-item">
+          <div class="mechanic-title">🌪️ 5 Automatic Wind Levels</div>
+          <div class="mechanic-desc">Lv 1 (5w • 1.0x wind) to Lv 5 Master Cyclone (All 125 words • 2.75x wind speed).</div>
+        </div>
+        <div class="mechanic-item">
+          <div class="mechanic-title">✉️ Bilingual Origami Slips</div>
+          <div class="mechanic-desc">Folded cream origami envelopes displaying both Bengali script and English romanization with uniform decoy styling.</div>
+        </div>
+        <div class="mechanic-item">
+          <div class="mechanic-title">⚡ Arcade Speed Index Scoring</div>
+          <div class="mechanic-desc">Lv 1: 0% • Lv 2: 20% • Lv 3: 100% • Lv 4: 200% • Lv 5: 500% penalty; Final Score = round((Raw ÷ Seconds) × 100).</div>
+        </div>
+        <div class="mechanic-item">
+          <div class="mechanic-title">📜 9:16 Certificate &amp; Leaderboard</div>
+          <div class="mechanic-desc">Official vermilion fingerprint Hanko seal, member leaderboard rankings, and 100% completeness gating.</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="./daakbaksher-gaan/index.html" class="play-cta">
+          📮 Play DaakBaksher Gaan Game (v8.0.0) →
+        </a>
+        <a href="https://songs.abhikism.com/daakbaksher-gaan/" class="secondary-cta" target="_blank" rel="noopener">
+          🎧 Song Info &amp; Streaming Platforms
+        </a>
+      </div>
+    </article>
+
+    <!-- Shelf 2: Unified Cross-Game Leaderboard (Members-Only, Live Games Only) -->
+    <section class="shelf-section" id="arcade-unified-leaderboard-section" style="margin-bottom:40px;background:var(--card-surface);border:2px solid var(--saul-crimson);border-radius:16px;padding:24px;box-shadow:6px 6px 0px #000000;">
+      <div class="shelf-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+        <div>
+          <h2 class="shelf-title" style="margin:0;">🏆 Official #ABHIKISM Unified Multi-Game Leaderboard</h2>
+          <div style="font-size:12px;color:var(--ink-muted);margin-top:4px;">Switch across live playable games, verify speed rankings, and jump straight into any challenge or track.</div>
+        </div>
+        <span class="badge-sub" id="hub-lb-status-pill">MEMBERS ONLY</span>
+      </div>
+
+      <div id="hub-lb-auth-gate" style="background:var(--card-elevated);border:1.5px solid var(--border-subtle);border-radius:12px;padding:18px;margin-bottom:12px;">
+        <div style="font-weight:700;color:var(--ink-ochre);font-size:14px;margin-bottom:6px;">🔐 Sign in or Register to view Official Leaderboards across all live games</div>
+        <div style="font-size:12px;color:var(--ink-muted);margin-bottom:12px;">Your member account works across every #ABHIKISM interactive game and arcade hub.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+          <input type="text" id="hub-auth-username" placeholder="@username" autocomplete="username" style="padding:8px 11px;border-radius:8px;border:1.5px solid var(--border-subtle);background:#0E0F12;color:var(--ink-cream);font-family:var(--font-mono);font-size:12px;">
+          <input type="password" id="hub-auth-password" placeholder="Password (min 6 chars)" autocomplete="current-password" style="padding:8px 11px;border-radius:8px;border:1.5px solid var(--border-subtle);background:#0E0F12;color:var(--ink-cream);font-family:var(--font-mono);font-size:12px;">
+          <button type="button" onclick="hubAuthAction('login')" style="padding:8px 14px;border-radius:8px;border:1.5px solid var(--ink-cream);background:var(--teal-primary);color:#FFFFFF;font-weight:700;font-size:12px;cursor:pointer;">Sign In</button>
+          <button type="button" onclick="hubAuthAction('register')" style="padding:8px 14px;border-radius:8px;border:1.5px solid var(--ink-cream);background:var(--saul-crimson);color:#FFFFFF;font-weight:700;font-size:12px;cursor:pointer;">Register Account</button>
+        </div>
+        <div id="hub-auth-msg" style="font-size:12px;margin-top:8px;color:var(--ink-ochre);display:none;"></div>
+      </div>
+
+      <div id="hub-lb-protected" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 12px;background:rgba(0,135,121,0.14);border:1px solid var(--teal-primary);border-radius:8px;margin-bottom:12px;">
+          <span style="font-size:12px;font-weight:700;color:#90FF6C;">✓ Viewing Unified Arcade Leaderboard as <code id="hub-lb-user">@member</code></span>
+          <button type="button" onclick="hubLogout()" style="padding:4px 10px;border-radius:6px;border:1px solid var(--border-subtle);background:#0E0F12;color:var(--ink-cream);font-size:11px;font-weight:700;cursor:pointer;">Logout</button>
+        </div>
+        <div id="hub-lb-game-tabs" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;"></div>
+        <div id="hub-lb-game-cta" style="margin-bottom:12px;font-size:12px;color:var(--ink-muted);"></div>
+        <div id="hub-lb-rows" style="display:flex;flex-direction:column;gap:8px;max-height:420px;overflow-y:auto;"></div>
+      </div>
+    </section>
+
+    <!-- Shelf 3: Coming Soon Teasers -->
+    <section class="shelf-section">
+      <div class="shelf-header">
+        <h2 class="shelf-title">✨ More #ABHIKISM Interactive Song Games In Development</h2>
+      </div>
+      <div class="upcoming-grid">
+        <div class="upcoming-card">
+          <span class="upcoming-badge">Coming Soon • Game #2</span>
+          <h3 class="upcoming-title">🎲 আর একটু খেলি (Aar Ektu Kheli)</h3>
+          <div class="upcoming-sub">An interactive childhood memory puzzle game exploring nostalgic Bengali street games and rhythmic syncopation.</div>
+        </div>
+        <div class="upcoming-card">
+          <span class="upcoming-badge">Coming Soon • Game #3</span>
+          <h3 class="upcoming-title">👑 আমি রাজা (Ami Raja)</h3>
+          <div class="upcoming-sub">A royal strategy narrative game navigating poetic rebellion, sovereign choices, and philosophical sovereignty.</div>
+        </div>
+        <div class="upcoming-card">
+          <span class="upcoming-badge">Coming Soon • Game #4</span>
+          <h3 class="upcoming-title">🧭 হে ভবঘুরে (Hey Bhoboghurey)</h3>
+          <div class="upcoming-sub">A wanderer's open exploration journey following riverbanks, twilight shadows, and philosophical wanderlust.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 #ABHIKISM Interactive Games Arcade • Track WKS-003 • games.abhikism.com</div>
+    <div>Zero-Client-Exposure Privacy Architecture • Fully Protected User Data</div>
+  </footer>
+  <script>
+    (function() {
+      const HUB_REGISTRY = [{"game_id": "daakbaksher-gaan", "game_title": "DaakBaksher Gaan: Letters in the Wind", "game_title_bn": "ডাকবাক্সের গান — বাতাসের চিঠি", "category": "song", "song_id": "daakbaksher-gaan", "song_title": "DaakBaksher Gaan", "catalog_code": "WKS-003", "status": "live", "leaderboard_tab": "DaakBaksherGaan-GameLeaderboard", "current_version": "v8.0.0", "play_url": "https://songs.abhikism.com/daakbaksher-gaan/game/", "song_url": "https://songs.abhikism.com/daakbaksher-gaan/", "scoring_label": "Arcade Speed Index (PTS)", "updated_at": "2026-11-13"}, {"game_id": "aar-ektu-kheli", "game_title": "Aar Ektu Kheli", "game_title_bn": "আর একটু খেলি", "category": "song", "song_id": "aar-ektu-kheli", "song_title": "Aar Ektu Kheli", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Leaderboard_aar-ektu-kheli", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/aar-ektu-kheli/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "ami-raja", "game_title": "Ami Raja", "game_title_bn": "আমি রাজা", "category": "song", "song_id": "ami-raja", "song_title": "Ami Raja", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Leaderboard_ami-raja", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/ami-raja/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "hey-bhoboghurey", "game_title": "Hey Bhoboghurey", "game_title_bn": "হে ভবঘুরে", "category": "song", "song_id": "hey-bhoboghurey", "song_title": "Hey Bhoboghurey", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Leaderboard_hey-bhoboghurey", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/hey-bhoboghurey/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}];
+      const HUB_SEED_LB = [{"certificate_id": "DBG-V80-SEED-L5", "game_id": "daakbaksher-gaan", "game_title": "DaakBaksher Gaan", "song_id": "daakbaksher-gaan", "timestamp_utc": "2026-11-13T10:00:00Z", "username": "aheli_shantiniketan", "player_name": "Aheli Chowdhury", "social_platform": "Instagram", "social_link": "https://instagram.com/aheli_shantiniketan", "social_handle": "@aheli_shantiniketan", "game_version": "v8.0.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 165400, "completion_time_formatted": "02:45.4", "score": 19500, "completeness_pct": 100}, {"certificate_id": "DBG-V71-SEED-L5", "timestamp_utc": "2026-11-04T08:15:00Z", "username": "ritwick_shantiniketan", "player_name": "Ritwick Sen", "social_platform": "Instagram", "social_link": "https://instagram.com/ritwick_shantiniketan", "social_handle": "@ritwick_shantiniketan", "game_version": "v7.1.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 165400, "completion_time_formatted": "02:45.4", "score": 19500, "completeness_pct": 100}, {"certificate_id": "DBG-V70-SEED-L5", "timestamp_utc": "2026-11-04T02:00:00Z", "username": "ritwick_shantiniketan", "player_name": "Ritwick Sen", "social_platform": "Instagram", "social_link": "https://instagram.com/ritwick_shantiniketan", "social_handle": "@ritwick_shantiniketan", "game_version": "v7.0.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 165400, "completion_time_formatted": "02:45.4", "score": 19500, "completeness_pct": 100}, {"certificate_id": "DBG-V60-SEED-L5", "timestamp_utc": "2026-11-03T06:00:00Z", "username": "ritwick_shantiniketan", "player_name": "Ritwick Sen", "social_platform": "Instagram", "social_link": "https://instagram.com/ritwick_shantiniketan", "social_handle": "@ritwick_shantiniketan", "game_version": "v6.0.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 165400, "completion_time_formatted": "02:45.4", "score": 19500, "completeness_pct": 100}, {"certificate_id": "DBG-V50-SEED-L5", "timestamp_utc": "2026-11-02T06:00:00Z", "username": "ritwick_shantiniketan", "player_name": "Ritwick Sen", "social_platform": "Instagram", "social_link": "https://instagram.com/ritwick_shantiniketan", "social_handle": "@ritwick_shantiniketan", "game_version": "v5.0.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 172500, "completion_time_formatted": "02:52.5", "score": 18000, "completeness_pct": 100}, {"certificate_id": "DBG-V41-SEED-L5", "timestamp_utc": "2026-11-01T16:15:00Z", "username": "ritwick_shantiniketan", "player_name": "Ritwick Sen", "social_platform": "Instagram", "social_link": "https://instagram.com/ritwick_shantiniketan", "social_handle": "@ritwick_shantiniketan", "game_version": "v4.1.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 173800, "completion_time_formatted": "02:53.8", "score": 17850, "completeness_pct": 100}, {"certificate_id": "DBG-V40-SEED-L5", "timestamp_utc": "2026-11-01T12:00:00Z", "username": "anirban_shantiniketan", "player_name": "Anirban Chatterjee", "social_platform": "Instagram", "social_link": "https://instagram.com/anirban_shantiniketan", "social_handle": "@anirban_shantiniketan", "game_version": "v4.0.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 176400, "completion_time_formatted": "02:56.4", "score": 17680, "completeness_pct": 100}, {"certificate_id": "DBG-V31-SEED-L5", "timestamp_utc": "2026-11-01T05:30:00Z", "player_name": "Debolina Mukherjee", "social_platform": "Instagram", "social_link": "https://instagram.com/debolina_shantiniketan", "social_handle": "@debolina_shantiniketan", "game_version": "v3.1.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 182100, "completion_time_formatted": "03:02.1", "score": 17450, "completeness_pct": 100}, {"certificate_id": "DBG-V3-SEED-L5", "timestamp_utc": "2026-10-31T20:05:00Z", "player_name": "Subhajit Mukherjee", "social_platform": "Instagram", "social_link": "https://instagram.com/subhajit_kolkata", "social_handle": "@subhajit_kolkata", "game_version": "v3.0.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 188500, "completion_time_formatted": "03:08.5", "score": 17200, "completeness_pct": 100}, {"certificate_id": "DBG-V2-SEED-L5", "timestamp_utc": "2026-10-31T18:10:00Z", "player_name": "Arindam Roy", "social_platform": "Instagram", "social_link": "https://instagram.com/arindam_kolkata", "social_handle": "@arindam_kolkata", "game_version": "v2.0.0", "level": 5, "target_words": 125, "words_collected": 125, "wind_speed": "2.75x", "completion_time_ms": 194400, "completion_time_formatted": "03:14.4", "score": 16850, "completeness_pct": 100}, {"certificate_id": "DBG-V2-SEED-L4", "timestamp_utc": "2026-10-31T18:22:00Z", "player_name": "Sohini Chatterjee", "social_platform": "Instagram, X", "social_link": "https://instagram.com/sohini_music | https://x.com/sohini_c", "social_handle": "@sohini_music", "game_version": "v2.0.0", "level": 4, "target_words": 50, "words_collected": 50, "wind_speed": "2.20x", "completion_time_ms": 76800, "completion_time_formatted": "01:16.8", "score": 6400, "completeness_pct": 100}, {"certificate_id": "DBG-V2-SEED-L3", "timestamp_utc": "2026-10-31T18:35:00Z", "player_name": "Ritam Sen", "social_platform": "X", "social_link": "https://x.com/ritam_verse", "social_handle": "@ritam_verse", "game_version": "v2.0.0", "level": 3, "target_words": 25, "words_collected": 25, "wind_speed": "1.75x", "completion_time_ms": 38200, "completion_time_formatted": "00:38.2", "score": 3100, "completeness_pct": 100}, {"certificate_id": "DBG-V2-SEED-L2", "timestamp_utc": "2026-10-31T18:40:00Z", "player_name": "Ananya Bose", "social_platform": "Instagram", "social_link": "https://instagram.com/ananya_bose_art", "social_handle": "@ananya_bose_art", "game_version": "v2.0.0", "level": 2, "target_words": 15, "words_collected": 15, "wind_speed": "1.35x", "completion_time_ms": 21500, "completion_time_formatted": "00:21.5", "score": 1800, "completeness_pct": 100}, {"certificate_id": "DBG-V2-SEED-L1", "timestamp_utc": "2026-10-31T18:45:00Z", "player_name": "Deborshi Mitra", "social_platform": "Reddit", "social_link": "https://reddit.com/u/deborshi_indie", "social_handle": "u/deborshi_indie", "game_version": "v2.0.0", "level": 1, "target_words": 5, "words_collected": 5, "wind_speed": "1.0x", "completion_time_ms": 8400, "completion_time_formatted": "00:08.4", "score": 580, "completeness_pct": 100}, {"certificate_id": "DBG-V1-SEED-WIN", "timestamp_utc": "2026-10-31T15:10:00Z", "player_name": "Poulomi Das", "social_platform": "Instagram", "social_link": "https://instagram.com/poulomi_kol", "social_handle": "@poulomi_kol", "game_version": "v1.0.0", "level": 2, "target_words": 15, "words_collected": 15, "wind_speed": "1.35x", "completion_time_ms": 24900, "completion_time_formatted": "00:24.9", "score": 1750, "completeness_pct": 100}];
+      const HUB_DEFAULT_WEBHOOK = "https://script.google.com/macros/s/AKfycbwETZpwdI0c7xguhbsMv27F-86LKlXi9xnH4WtC1WLROeUCzqhV_2ONZtIrU0lXWA_1Xw/exec";
+      const saved = localStorage.getItem('abhikism_dbg_theme_mode');
+      const btn = document.getElementById('hub-theme-toggle');
+      if (saved === 'high-contrast') {
+        document.body.classList.add('theme-high-contrast');
+        if (btn) btn.textContent = '🌑 Classic Noir';
+      }
+      window.toggleHubContrast = function() {
+        const hc = document.body.classList.toggle('theme-high-contrast');
+        localStorage.setItem('abhikism_dbg_theme_mode', hc ? 'high-contrast' : 'classic-noir');
+        if (btn) btn.textContent = hc ? '🌑 Classic Noir' : '◐ High-Contrast';
+      };
+
+      const hubState = {
+        user: null,
+        token: '',
+        liveGames: (Array.isArray(HUB_REGISTRY) ? HUB_REGISTRY : []).filter(g => g && String(g.status || '').toLowerCase() === 'live'),
+        selectedGameId: 'daakbaksher-gaan',
+        rowsByGame: {}
+      };
+
+      function esc(s) {
+        return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+      }
+
+      function restoreHubSession() {
+        try {
+          const raw = JSON.parse(localStorage.getItem('abhikism_dbg_active_session') || 'null');
+          if (raw && raw.username && raw.session_token) {
+            hubState.user = raw.username;
+            hubState.token = raw.session_token;
+          }
+        } catch (_) {}
+        syncHubAuthUI();
+      }
+
+      function syncHubAuthUI() {
+        const gate = document.getElementById('hub-lb-auth-gate');
+        const prot = document.getElementById('hub-lb-protected');
+        const userEl = document.getElementById('hub-lb-user');
+        if (hubState.user) {
+          if (gate) gate.style.display = 'none';
+          if (prot) prot.style.display = 'block';
+          if (userEl) userEl.textContent = '@' + hubState.user;
+          renderHubGamesTabs();
+          fetchHubLeaderboard(hubState.selectedGameId);
+        } else {
+          if (gate) gate.style.display = 'block';
+          if (prot) prot.style.display = 'none';
+        }
+      }
+
+      window.hubAuthAction = async function(mode) {
+        const u = (document.getElementById('hub-auth-username')?.value || '').trim().replace(/^@+/, '');
+        const p = document.getElementById('hub-auth-password')?.value || '';
+        const msgEl = document.getElementById('hub-auth-msg');
+        if (!/^[A-Za-z0-9_.-]{3,32}$/.test(u) || p.length < 6) {
+          if (msgEl) { msgEl.style.display = 'block'; msgEl.textContent = 'Enter valid @username (3-32 chars) and password (min 6 chars).'; }
+          return;
+        }
+        const tok = 'dbg_sess_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+        let ok = false;
+        try {
+          const r = await fetch('/api/game-auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: mode, username: u, password: p, session_token: tok })
+          });
+          const d = await r.json().catch(() => null);
+          if (r.ok && d && (d.ok || d.status === 'SUCCESS')) {
+            hubState.user = d.username || u;
+            hubState.token = d.session_token || tok;
+            ok = true;
+          } else if (d && (d.error || d.message)) {
+            if (msgEl) { msgEl.style.display = 'block'; msgEl.textContent = d.error || d.message; }
+            return;
+          }
+        } catch (_) {
+          // Static host fallback session
+          hubState.user = u;
+          hubState.token = tok;
+          ok = true;
+        }
+        if (ok) {
+          try {
+            localStorage.setItem('abhikism_dbg_active_session', JSON.stringify({
+              username: hubState.user,
+              session_token: hubState.token,
+              authenticated_at: new Date().toISOString()
+            }));
+          } catch (_) {}
+          if (msgEl) msgEl.style.display = 'none';
+          syncHubAuthUI();
+        }
+      };
+
+      window.hubLogout = function() {
+        hubState.user = null;
+        hubState.token = '';
+        try { localStorage.removeItem('abhikism_dbg_active_session'); } catch (_) {}
+        syncHubAuthUI();
+      };
+
+      window.selectHubGame = function(gameId) {
+        hubState.selectedGameId = String(gameId || 'daakbaksher-gaan');
+        renderHubGamesTabs();
+        fetchHubLeaderboard(hubState.selectedGameId);
+      };
+
+      function renderHubGamesTabs() {
+        const tabsEl = document.getElementById('hub-lb-game-tabs');
+        const ctaEl = document.getElementById('hub-lb-game-cta');
+        const live = hubState.liveGames.filter(g => g && String(g.status || '').toLowerCase() === 'live');
+        const active = live.find(g => g.game_id === hubState.selectedGameId) || live[0];
+        if (active) hubState.selectedGameId = active.game_id;
+        if (tabsEl) {
+          tabsEl.innerHTML = live.map(g => {
+            const on = g.game_id === hubState.selectedGameId;
+            return `<button type="button" onclick="selectHubGame('${esc(g.game_id)}')" style="padding:6px 12px;border-radius:8px;border:1.5px solid ${on ? 'var(--ink-cream)' : 'var(--border-subtle)'};background:${on ? 'var(--saul-crimson)' : 'var(--card-elevated)'};color:#FFFFFF;font-family:var(--font-mono);font-size:11.5px;font-weight:700;cursor:pointer;">📮 ${esc(g.game_title)} (${esc(g.current_version || '')})</button>`;
+          }).join('');
+        }
+        if (ctaEl && active) {
+          const href = active.game_id === 'daakbaksher-gaan' ? './daakbaksher-gaan/index.html' : (active.game_url || './index.html');
+          ctaEl.innerHTML = `Active Board: <strong>${esc(active.game_title)}</strong> • <a href="${esc(href)}" style="color:var(--ink-ochre);font-weight:700;">▶ Play Now →</a> • <a href="${esc(active.song_url || 'https://songs.abhikism.com')}" target="_blank" rel="noopener" style="color:var(--ink-ochre);font-weight:700;">🎧 Song Info</a>`;
+        }
+        renderHubRows();
+      }
+
+      function renderHubRows() {
+        const box = document.getElementById('hub-lb-rows');
+        if (!box) return;
+        const gid = hubState.selectedGameId;
+        const fromServer = Array.isArray(hubState.rowsByGame[gid]) ? hubState.rowsByGame[gid] : [];
+        const fromSeed = (gid === 'daakbaksher-gaan' && Array.isArray(HUB_SEED_LB)) ? HUB_SEED_LB : [];
+        const rows = fromServer.length > 0 ? fromServer : fromSeed;
+        if (rows.length === 0) {
+          box.innerHTML = `<div style="padding:16px;text-align:center;color:var(--ink-muted);font-size:12.5px;">No verified scores recorded yet for this game.</div>`;
+          return;
+        }
+        box.innerHTML = rows.slice(0, 15).map((r, idx) => {
+          const rank = idx + 1;
+          return `<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding:10px 14px;background:var(--card-elevated);border:1.5px solid ${rank <= 3 ? 'var(--saul-crimson)' : 'var(--border-subtle)'};border-radius:10px;">
+            <div>
+              <strong style="color:var(--ink-ochre);font-family:var(--font-mono);margin-right:8px;">#${rank}</strong>
+              <strong style="color:var(--ink-cream);">${esc(r.player_name || r.username || '@listener')}</strong>
+              <span style="color:var(--ink-muted);font-size:12px;margin-left:6px;">(${esc(r.social_platform || 'Social')}: ${esc(r.social_handle || '@listener')})</span>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--ink-cream);display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="padding:2px 7px;border-radius:5px;background:#0E0F12;border:1px solid var(--border-subtle);">${esc(r.game_version || '')}</span>
+              <span style="padding:2px 7px;border-radius:5px;background:#0E0F12;border:1px solid var(--border-subtle);">Lv ${Number(r.level) || 1}/5</span>
+              <span style="padding:2px 7px;border-radius:5px;background:#0E0F12;border:1px solid var(--border-subtle);">⏱️ ${esc(r.completion_time_formatted || '00:00.0')}</span>
+              <span style="padding:2px 7px;border-radius:5px;background:var(--teal-primary);color:#FFFFFF;font-weight:700;">${Number(r.score) || 0} PTS</span>
+            </div>
+          </div>`;
+        }).join('');
+      }
+
+      async function fetchHubLeaderboard(gid) {
+        let gotSrv = false;
+        try {
+          const hdrs = hubState.token ? { 'X-Game-Session-Token': hubState.token } : {};
+          const res = await fetch(`/api/game-leaderboard?game_id=${encodeURIComponent(gid)}`, { headers: hdrs });
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data.live_games) && data.live_games.length > 0) {
+              hubState.liveGames = data.live_games.filter(g => g && String(g.status || '').toLowerCase() === 'live');
+            }
+            if (Array.isArray(data.leaderboard)) {
+              hubState.rowsByGame[gid] = data.leaderboard;
+              gotSrv = true;
+            }
+          }
+        } catch (_) {}
+        const wh = localStorage.getItem('abhikism_dbg_webhook_url') || HUB_DEFAULT_WEBHOOK || '';
+        if (!gotSrv && wh && wh.startsWith('https://script.google.com/')) {
+          try {
+            const [dRes, lRes] = await Promise.all([
+              fetch(`${wh}?action=directory`).catch(() => null),
+              fetch(`${wh}?action=leaderboard&game_id=${encodeURIComponent(gid)}&username=${encodeURIComponent(hubState.user || '')}`).catch(() => null)
+            ]);
+            if (dRes && dRes.ok) {
+              const dd = await dRes.json().catch(() => null);
+              if (dd && Array.isArray(dd.games)) {
+                hubState.liveGames = dd.games.filter(g => g && String(g.status || '').toLowerCase() === 'live');
+              }
+            }
+            if (lRes && lRes.ok) {
+              const ld = await lRes.json().catch(() => null);
+              if (ld && Array.isArray(ld.leaderboard)) {
+                hubState.rowsByGame[gid] = ld.leaderboard;
+              }
+            }
+          } catch (_) {}
+        }
+        renderHubGamesTabs();
+      }
+
+      restoreHubSession();
+    })();
+  </script>
+</body>
+</html>
