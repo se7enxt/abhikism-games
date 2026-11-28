@@ -1,18 +1,35 @@
 {
   "game_id": "WKS-003",
   "title": "DaakBaksher Gaan — 2D Sumi-e Wind Game",
-  "version": "v8.0.0",
+  "version": "v8.1.0",
   "semver": {
     "game": "daakbaksher-gaan",
     "song_id": "WKS-003",
-    "current_version": "v8.0.0",
+    "current_version": "v8.1.0",
     "semver": {
       "X_feature": 8,
-      "Y_bugfix": 0,
+      "Y_bugfix": 1,
       "Z_additional": 0
     },
     "schema_rule": "vX.Y.Z — X: Feature Addition, Y: Bug Fix, Z: Additional",
     "changelog": [
+      {
+        "version": "v8.1.0",
+        "date": "2026-11-28",
+        "summary": "Seamless auto-advance progression (Levels 1-4) with zero streaming words at 100%, Grand Finale Level 5 completion hub with certificate/games/songs CTAs, and Admin-only Leaderboard versioning history & filters.",
+        "X_feature_additions": [
+          "Automatic Level 1-4 Progression Overlay (#level-advance-overlay): Brief 3-second countdown card with live progress bar, Next Level Now button, and optional Claim Certificate shortcut — advances automatically even when logged out or offline",
+          "Level 5 Grand Finale Victory Screen (#grand-finale-overlay): Celebrates full game completion with Login/Download 9:16 Certificate CTA, cross-links to Taar Kata Ektara & All #ABHIKISM Games, Listen to #ABHIKISM Songs, and Replay",
+          "Admin-Only Versioning History & Filters: Restricts #version-changelog-box and #lb-version-filters strictly to authenticated @admin sessions while retaining compact version tags on leaderboard rows for all members"
+        ],
+        "Y_bug_fixes": [
+          "Eliminated stuck 100% postbox state with words still streaming on mobile and desktop by immediately clearing and pausing the wind word layer via clearAndPauseWindField() at 100% completeness",
+          "Auto-advances cleanly into Level X+1 when closing Certificate or Leaderboard modals after completing Levels 1-4, and repopulates fresh floating words on level start"
+        ],
+        "Z_additional": [
+          "Added v8.1.0 admin version filter pill and preserved multi-game games.abhikism.com Hub & sitemap generation across all live games in games_registry.json"
+        ]
+      },
       {
         "version": "v8.0.0",
         "date": "2026-11-13",
@@ -242,6 +259,23 @@
     }
   ],
   "changelog": [
+    {
+      "version": "v8.1.0",
+      "date": "2026-11-28",
+      "summary": "Seamless auto-advance progression (Levels 1-4) with zero streaming words at 100%, Grand Finale Level 5 completion hub with certificate/games/songs CTAs, and Admin-only Leaderboard versioning history & filters.",
+      "X_feature_additions": [
+        "Automatic Level 1-4 Progression Overlay (#level-advance-overlay): Brief 3-second countdown card with live progress bar, Next Level Now button, and optional Claim Certificate shortcut — advances automatically even when logged out or offline",
+        "Level 5 Grand Finale Victory Screen (#grand-finale-overlay): Celebrates full game completion with Login/Download 9:16 Certificate CTA, cross-links to Taar Kata Ektara & All #ABHIKISM Games, Listen to #ABHIKISM Songs, and Replay",
+        "Admin-Only Versioning History & Filters: Restricts #version-changelog-box and #lb-version-filters strictly to authenticated @admin sessions while retaining compact version tags on leaderboard rows for all members"
+      ],
+      "Y_bug_fixes": [
+        "Eliminated stuck 100% postbox state with words still streaming on mobile and desktop by immediately clearing and pausing the wind word layer via clearAndPauseWindField() at 100% completeness",
+        "Auto-advances cleanly into Level X+1 when closing Certificate or Leaderboard modals after completing Levels 1-4, and repopulates fresh floating words on level start"
+      ],
+      "Z_additional": [
+        "Added v8.1.0 admin version filter pill and preserved multi-game games.abhikism.com Hub & sitemap generation across all live games in games_registry.json"
+      ]
+    },
     {
       "version": "v8.0.0",
       "date": "2026-11-13",

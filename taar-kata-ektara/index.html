@@ -239,14 +239,63 @@
       position: fixed; inset: 0; z-index: 56; display: none;
       align-items: center; justify-content: center; flex-direction: column; text-align: center;
       background: radial-gradient(circle, rgba(250, 243, 230, 0.94) 0%, rgba(226, 190, 116, 0.90) 55%, rgba(24, 16, 28, 0.95) 100%);
-      color: #14121C; padding: 30px;
+      color: #14121C; padding: 24px; overflow-y: auto;
     }
     #dawnInterlude.show { display: flex; }
+    #dawnInterlude.finale-mode {
+      background: radial-gradient(circle at 50% 34%, rgba(56, 22, 38, 0.95) 0%, rgba(11, 10, 18, 0.97) 78%);
+      color: var(--ivory);
+    }
     #dawnInterlude .eyebrow { font-family: var(--serif); letter-spacing: 0.28em; font-size: 12px; color: #8C1920; }
-    #dawnInterlude h2 { font-family: var(--serif); font-size: clamp(30px, 4.8vw, 52px); font-weight: 500; margin: 10px 0 6px; }
+    #dawnInterlude.finale-mode .eyebrow { color: var(--gold); }
+    #dawnInterlude h2 { font-family: var(--serif); font-size: clamp(28px, 4.8vw, 52px); font-weight: 500; margin: 10px 0 6px; }
     #dawnInterlude .bn-quote { font-family: var(--bn); font-size: 22px; color: #36251C; margin-bottom: 12px; }
-    .interlude-meta { font-family: var(--serif); font-size: 15px; color: #2A1F24; margin-bottom: 22px; letter-spacing: 0.08em; }
-    .interlude-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    #dawnInterlude.finale-mode .bn-quote { color: var(--gold); }
+    .interlude-meta { font-family: var(--serif); font-size: 15px; color: #2A1F24; margin-bottom: 14px; letter-spacing: 0.08em; }
+    #dawnInterlude.finale-mode .interlude-meta { color: rgba(250, 243, 230, 0.88); }
+    .interlude-countdown-wrap { width: min(90vw, 420px); margin: 4px auto 16px; }
+    .interlude-countdown-track {
+      width: 100%; height: 6px; background: rgba(20, 18, 28, 0.22);
+      border: 1px solid rgba(140, 25, 32, 0.45); overflow: hidden; margin-bottom: 6px;
+    }
+    .interlude-countdown-fill {
+      height: 100%; width: 100%; background: linear-gradient(90deg, #8C1920, #C41E28, #E2BE74);
+      transition: width 0.08s linear;
+    }
+    .interlude-countdown-text {
+      font-family: var(--serif); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #6B1419; font-weight: 600;
+    }
+    .interlude-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
+    .finale-hint {
+      max-width: 560px; font-size: 16px; line-height: 1.5; color: rgba(250, 243, 230, 0.86);
+      margin: 0 auto 16px;
+    }
+    .finale-promo-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 10px;
+      width: min(92vw, 620px); margin: 18px auto 12px;
+    }
+    .finale-promo-card {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      padding: 12px 14px; background: rgba(16, 15, 26, 0.86); border: 1px solid rgba(226, 190, 116, 0.55);
+      color: var(--ivory); text-decoration: none; font-family: var(--editorial); font-size: 15px; font-weight: 600;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .finale-promo-card:hover { transform: translateY(-2px); border-color: var(--gold); background: rgba(226, 190, 116, 0.14); }
+    .finale-promo-card small { font-size: 11px; letter-spacing: 0.10em; color: var(--gold); text-transform: uppercase; }
+    .admin-version-bar {
+      display: none; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0 8px;
+      padding: 8px 10px; border: 1px dashed rgba(226, 190, 116, 0.45); background: rgba(226, 190, 116, 0.06);
+    }
+    .admin-ver-pill {
+      font-family: var(--editorial); font-size: 12px; font-weight: 600; padding: 3px 9px;
+      background: rgba(255,255,255,0.05); color: var(--ivory); border: 1px solid rgba(226, 190, 116, 0.35); cursor: pointer;
+    }
+    .admin-ver-pill.active { background: var(--gold); color: var(--noir); border-color: var(--gold); }
+    .admin-changelog-box {
+      display: none; margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(226, 190, 116, 0.35);
+      font-size: 12.5px; color: rgba(250, 243, 230, 0.78); line-height: 1.5;
+    }
 
     /* Shared Vogue Modal System (Auth, Leaderboard, 9:16 Certificate, Lookbook) */
     .modal-bg {
@@ -380,7 +429,7 @@
 
   <!-- Vogue Paris Opening Cover -->
   <section id="coverOverlay">
-    <div class="cover-issue">#ABHIKISM · ÉDITION INTERACTIVE N° 02 · V1.0.0</div>
+    <div class="cover-issue">#ABHIKISM · ÉDITION INTERACTIVE N° 02 · V1.1.0</div>
     <h1 class="cover-title">TAAR KATA EKTARA</h1>
     <div class="cover-bn">তার কাটা একতারা</div>
     <p class="cover-desc">
@@ -433,15 +482,42 @@
 
   <div class="lyric-echo" id="lyricEcho"></div>
 
-  <!-- Morning Dawn Level Breakthrough Overlay -->
+  <!-- Morning Dawn Level Breakthrough & Level 5 Grand Finale Overlay -->
   <div id="dawnInterlude">
-    <div class="eyebrow">L’AUBE SE LÈVE · MORNING AWAKENED</div>
+    <div class="eyebrow" id="interludeEyebrow">L’AUBE SE LÈVE · MORNING AWAKENED</div>
     <h2 id="interludeTitle">Maya-Bon Forest Illuminated</h2>
     <div class="bn-quote" id="interludeQuote">এ ভ্রম মায়াবনে সে যে, আঁধারে বিকাশে, জোনাকী ছন্দে</div>
     <div class="interlude-meta" id="interludeMeta">Level 1 Complete · Score 0 · Time 00:00.0</div>
+    <div class="interlude-countdown-wrap" id="interludeCountdownWrap">
+      <div class="interlude-countdown-track"><div class="interlude-countdown-fill" id="interludeCountdownFill"></div></div>
+      <div class="interlude-countdown-text" id="interludeCountdownText">Entering World 2 in 3s…</div>
+    </div>
+    <p class="finale-hint" id="finaleHint" style="display:none;">
+      You finished the game! Sign in or create a free #ABHIKISM account to claim &amp; download your official 9:16 Vogue Noir Certificate — or explore more games &amp; songs below.
+    </p>
     <div class="interlude-btns">
-      <button class="cover-cta" id="btnNextWorld" onclick="proceedNextWorld()">Enter Next World</button>
-      <button class="cover-sub-btn" style="background:#12101A;color:#FAF3E6;" onclick="openCertModal()">Claim 9:16 Certificate &amp; Post Score</button>
+      <button class="cover-cta" id="btnNextWorld" onclick="proceedNextWorld()">Enter Next World Now</button>
+      <button class="cover-sub-btn" id="btnInterludeCert" style="background:#12101A;color:#FAF3E6;" onclick="openCertFromInterlude()">Claim Level 1 Certificate</button>
+    </div>
+    <div id="finaleLinksWrap" style="display:none;width:100%;">
+      <div class="finale-promo-grid">
+        <a class="finale-promo-card" id="linkFinaleDbg" href="https://games.abhikism.com/daakbaksher-gaan/">
+          <span>📮 Play DaakBaksher Gaan</span>
+          <small>Saul Bass 2D Wind Game</small>
+        </a>
+        <a class="finale-promo-card" id="linkFinaleHub" href="https://games.abhikism.com/">
+          <span>🎮 Try Other #ABHIKISM Games</span>
+          <small>games.abhikism.com Arcade</small>
+        </a>
+        <a class="finale-promo-card" id="linkFinaleSongs" href="https://songs.abhikism.com/" target="_blank" rel="noopener">
+          <span>🎵 Listen to More Songs</span>
+          <small>songs.abhikism.com</small>
+        </a>
+      </div>
+      <div class="interlude-btns" style="margin-top:8px;">
+        <button type="button" class="pill-btn gold" onclick="openLeaderboardFromInterlude()">Official Leaderboard</button>
+        <button type="button" class="pill-btn" onclick="proceedNextWorld()">↻ Replay Voyage (Level 1)</button>
+      </div>
     </div>
   </div>
 
@@ -514,7 +590,7 @@
         <p style="font-size:17px;margin-bottom:14px;">Signed in as <strong id="authSignedInUser" style="color:var(--gold);">@player</strong> <span id="authSignedInEmail" style="font-size:13px;color:rgba(250,243,230,0.65);"></span></p>
         <p style="font-size:14px;color:rgba(250,243,230,0.78);margin-bottom:16px;">Your account syncs across <em>Taar Kata Ektara</em>, <em>DaakBaksher Gaan</em>, and <a href="https://users.abhikism.com/" target="_blank" rel="noopener" style="color:var(--gold);">users.abhikism.com</a>.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <button type="button" class="pill-btn gold" onclick="closeModal('authModal');openLeaderboardModal();">View Official Leaderboard</button>
+          <button type="button" class="pill-btn gold" onclick="closeModal('authModal',true);openLeaderboardModal();">View Official Leaderboard</button>
           <button type="button" class="pill-btn" onclick="logoutMember()">Sign Out</button>
         </div>
       </div>
@@ -557,14 +633,16 @@
       </div>
       <div id="lbAuthGate" style="display:none;text-align:center;padding:24px 12px;">
         <p style="font-size:17px;margin-bottom:14px;">Sign in with your #ABHIKISM account to view the live cross-game leaderboard.</p>
-        <button type="button" class="cover-cta" onclick="closeModal('leaderboardModal');openAuthModal();">Sign In / Create Account</button>
+        <button type="button" class="cover-cta" onclick="closeModal('leaderboardModal',true);openAuthModal();">Sign In / Create Account</button>
       </div>
       <div id="lbContentPane">
         <div class="lb-switcher" id="lbGameSwitcher">
-          <button type="button" class="lb-tab-btn active" data-gid="taar-kata-ektara" onclick="switchLeaderboardGame('taar-kata-ektara')">Taar Kata Ektara (v1.0.0)</button>
-          <button type="button" class="lb-tab-btn" data-gid="daakbaksher-gaan" onclick="switchLeaderboardGame('daakbaksher-gaan')">DaakBaksher Gaan (v8.0.0)</button>
+          <button type="button" class="lb-tab-btn active" data-gid="taar-kata-ektara" onclick="switchLeaderboardGame('taar-kata-ektara')">Taar Kata Ektara (v1.1.0)</button>
+          <button type="button" class="lb-tab-btn" data-gid="daakbaksher-gaan" onclick="switchLeaderboardGame('daakbaksher-gaan')">DaakBaksher Gaan (v8.1.0)</button>
           <button type="button" class="pill-btn" style="margin-left:auto;" onclick="refreshLeaderboard()">↻ Refresh</button>
         </div>
+        <!-- Admin-Only Version Filter Bar (Hidden from non-admin members) -->
+        <div class="admin-version-bar" id="lbAdminVersionFilters"></div>
         <div class="status-note" id="lbStatusNote">Loading live rankings…</div>
         <div style="overflow-x:auto;">
           <table class="lb-table">
@@ -573,6 +651,11 @@
             </thead>
             <tbody id="lbTableBody"></tbody>
           </table>
+        </div>
+        <!-- Admin-Only Version History Registry (Hidden from non-admin members) -->
+        <div class="admin-changelog-box" id="lbVersionChangelogBox">
+          <div style="font-family:var(--serif);font-size:12px;letter-spacing:0.14em;color:var(--gold);margin-bottom:6px;">ADMIN SEMANTIC VERSION HISTORY</div>
+          <div id="lbVersionChangelogList"></div>
         </div>
       </div>
     </div>
@@ -599,7 +682,7 @@
             <p style="font-size:15px;color:var(--gold);margin-bottom:12px;" id="certAchievementSummary">Achievement Unlocked: Level 1 · 5/5 Words · 0 PTS · 00:00.0</p>
             <div id="certNeedAuthBox" style="display:none;padding:14px;border:1px solid var(--crimson);margin-bottom:14px;">
               <p style="margin-bottom:10px;">Please sign in with your #ABHIKISM account to issue your verified certificate and post to the leaderboard.</p>
-              <button type="button" class="pill-btn crimson" onclick="closeModal('certModal');openAuthModal();">Sign In / Create Account</button>
+              <button type="button" class="pill-btn crimson" onclick="closeModal('certModal',true);openAuthModal();">Sign In / Create Account</button>
             </div>
             <div id="certStep1Box">
               <div class="form-grid">
@@ -2298,7 +2381,8 @@ window.VOGUE_ENGINE_ART = (function () {
     const CURRENT_GAME_TITLE_BN = "তার কাটা একতারা — পাঁচ ভোরের জগৎ";
     const CURRENT_SONG_ID = "taar-kata-ektara";
     const CURRENT_GAME_CATEGORY = "song";
-    const GAME_VERSION = "v1.0.0";
+    const GAME_VERSION = "v1.1.0";
+    const GAME_VERSION_CHANGELOG = [{"version": "v1.1.0", "date": "2026-11-28", "summary": "Seamless auto-advance progression (Levels 1-4) with zero streaming words at 100% dawn, Level 5 Grand Finale completion screen with certificate/games/songs CTAs, and Admin-only Leaderboard versioning history & filters."}, {"version": "v1.0.0", "date": "2026-11-28", "summary": "Initial production launch of Taar Kata Ektara: Five Pre-Dawn Worlds with French Vogue Noir 2D-in-3D engine, 360° world-space backdrops, Level 5 Cocteau & Dalí mirror dreamscape, millisecond timer, and Unified_Games_Leaderboard v4.2 sync."}];
     const DEFAULT_CLOUD_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwETZpwdI0c7xguhbsMv27F-86LKlXi9xnH4WtC1WLROeUCzqhV_2ONZtIrU0lXWA_1Xw/exec";
     const SESSION_STORAGE_KEY = "abhikism_dbg_active_session";
     const IS_AUTOTEST_ENV = new URLSearchParams(window.location.search).get('autotest') === '1';
@@ -2484,10 +2568,15 @@ window.VOGUE_ENGINE_ART = (function () {
       // Unified Member Auth Session
       isAuthenticated: false,
       loggedInUser: '',
+      userRole: 'member',
       emailMasked: '',
       sessionToken: '',
       authMode: 'login',
       selectedLbGameId: CURRENT_GAME_ID,
+      lbVersionFilter: 'all',
+      lbCachedRows: [],
+      autoAdvanceTimerId: null,
+      autoAdvanceCountdownId: null,
       // Physics & Camera
       px: 0, py: 0, pz: 0,
       vx: 0, vy: 0, vz: 0,
@@ -2575,6 +2664,7 @@ window.VOGUE_ENGINE_ART = (function () {
     const nextDecoyWord = () => DECOY_WORDS[(decoyCursor++) % DECOY_WORDS.length];
 
     function spawnWorld(idx) {
+      cancelAutoAdvance();
       state.worldIdx = idx;
       const world = WORLDS[idx];
       wordDeck = buildWorldDeck(world);
@@ -2589,7 +2679,8 @@ window.VOGUE_ENGINE_ART = (function () {
       state.dawn = 0.06;
       initAmbientMotes();
       if (world.id === 'dream') initDreamStars();
-      document.getElementById('dawnInterlude').classList.remove('show');
+      const interludeEl = document.getElementById('dawnInterlude');
+      interludeEl.classList.remove('show', 'finale-mode');
 
       function isWellSpaced(cx, cy, cz, excludeId, minDist3D, minAngSep) {
         const cAng = Math.atan2(cx - state.px, cz - state.pz);
@@ -2725,11 +2816,13 @@ window.VOGUE_ENGINE_ART = (function () {
           const line = ent.word.lineBn ? ` — <span class="bn">${ent.word.lineBn}</span>` : '';
           showEcho(`✦ <span class="bn">${ent.word.bn}</span> (${ent.word.roman}) +${pts}${line}`);
         }
-        recycleEntity(ent, true);
-
         if (state.collected >= world.targetWords) {
           state.dawn = 1.0;
           state.levelCompleteOpen = true;
+          // v1.1.0: Immediately halt & clear all streaming 3D word targets when a world reaches 100% dawn
+          state.entities = [];
+          state.liftingWords = [];
+          state.renderedHits = [];
           pauseTimer();
           if (document.pointerLockElement) { try { document.exitPointerLock(); } catch (_) {} }
           const elapsed = getElapsedMs();
@@ -2745,13 +2838,9 @@ window.VOGUE_ENGINE_ART = (function () {
             completionTimeMs: elapsed,
             completionTimeFormatted: fmtTime
           };
-          document.getElementById('interludeTitle').textContent = `${world.nameEn} Illuminated`;
-          document.getElementById('interludeQuote').textContent = world.lyricQuoteBn;
-          document.getElementById('interludeMeta').textContent = `Level ${world.level}/5 Complete · Score ${state.totalScore.toLocaleString()} PTS · Time ${fmtTime}`;
-          document.getElementById('btnNextWorld').textContent = state.worldIdx < WORLDS.length - 1
-            ? `Enter World ${state.worldIdx + 2}: ${WORLDS[state.worldIdx + 1].nameEn}`
-            : 'All 5 Worlds Awakened — Replay Voyage';
-          document.getElementById('dawnInterlude').classList.add('show');
+          showDawnInterludeForCurrentWorld(world, fmtTime);
+        } else {
+          recycleEntity(ent, true);
         }
       } else {
         const pct = world.wrongPenaltyPct;
@@ -3209,6 +3298,15 @@ window.VOGUE_ENGINE_ART = (function () {
       return p.get('webhook') || localStorage.getItem('abhikism_dbg_webhook_url') || DEFAULT_CLOUD_WEBHOOK_URL;
     }
 
+    function isAdminUser() {
+      return Boolean(
+        state.isAuthenticated &&
+        state.loggedInUser &&
+        (String(state.userRole || '').toLowerCase() === 'admin' ||
+         String(state.loggedInUser || '').trim().toLowerCase() === 'admin')
+      );
+    }
+
     function restoreSession() {
       try {
         const raw = localStorage.getItem(SESSION_STORAGE_KEY);
@@ -3217,6 +3315,8 @@ window.VOGUE_ENGINE_ART = (function () {
         if (obj && obj.username) {
           state.isAuthenticated = true;
           state.loggedInUser = String(obj.username).replace(/^@+/, '');
+          const r = String(obj.role || '').trim().toLowerCase();
+          state.userRole = r === 'admin' ? 'admin' : (r ? r : (state.loggedInUser.toLowerCase() === 'admin' ? 'admin' : 'member'));
           state.emailMasked = obj.email_masked || '';
           state.sessionToken = obj.session_token || '';
         }
@@ -3224,14 +3324,17 @@ window.VOGUE_ENGINE_ART = (function () {
       syncAuthUI();
     }
 
-    function saveSession(username, token, emailMasked) {
+    function saveSession(username, token, emailMasked, role) {
       state.isAuthenticated = true;
       state.loggedInUser = String(username || '').replace(/^@+/, '');
+      const r = String(role || '').trim().toLowerCase();
+      state.userRole = r === 'admin' ? 'admin' : (r ? r : (state.loggedInUser.toLowerCase() === 'admin' ? 'admin' : 'member'));
       state.sessionToken = token || '';
       state.emailMasked = emailMasked || '';
       try {
         localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({
           username: state.loggedInUser,
+          role: state.userRole,
           email_masked: state.emailMasked,
           session_token: state.sessionToken,
           authenticated_at: new Date().toISOString()
@@ -3250,6 +3353,8 @@ window.VOGUE_ENGINE_ART = (function () {
         document.getElementById('authSignedInUser').textContent = '@' + state.loggedInUser;
         document.getElementById('authSignedInEmail').textContent = state.emailMasked ? `(${state.emailMasked})` : '';
       }
+      syncFinaleAuthCta();
+      syncAdminLeaderboardUi();
     }
 
     window.setAuthMode = function (mode) {
@@ -3285,7 +3390,7 @@ window.VOGUE_ENGINE_ART = (function () {
         });
         const data = await res.json();
         if (data && data.ok) {
-          saveSession(data.username || uname, data.session_token || '', data.email_masked || '');
+          saveSession(data.username || uname, data.session_token || '', data.email_masked || '', data.role || 'member');
           msg.className = 'status-note ok';
           msg.textContent = `✓ Welcome, @${state.loggedInUser}!`;
         } else {
@@ -3300,7 +3405,7 @@ window.VOGUE_ENGINE_ART = (function () {
 
     window.logoutMember = async function () {
       const prevTok = state.sessionToken;
-      state.isAuthenticated = false; state.loggedInUser = ''; state.sessionToken = ''; state.emailMasked = '';
+      state.isAuthenticated = false; state.loggedInUser = ''; state.userRole = 'member'; state.lbVersionFilter = 'all'; state.sessionToken = ''; state.emailMasked = '';
       try { localStorage.removeItem(SESSION_STORAGE_KEY); } catch (_) {}
       syncAuthUI();
       if (prevTok) {
@@ -3311,9 +3416,78 @@ window.VOGUE_ENGINE_ART = (function () {
       }
     };
 
+    // Admin-Only Version Filters & Changelog Gate (Hidden from non-admins; row Version column stays visible to all)
+    function syncAdminLeaderboardUi() {
+      const bar = document.getElementById('lbAdminVersionFilters');
+      const box = document.getElementById('lbVersionChangelogBox');
+      const list = document.getElementById('lbVersionChangelogList');
+      const admin = isAdminUser();
+      if (!admin) {
+        state.lbVersionFilter = 'all';
+        if (bar) { bar.style.display = 'none'; bar.innerHTML = ''; }
+        if (box) box.style.display = 'none';
+        if (list) list.innerHTML = '';
+        return;
+      }
+      if (bar) {
+        const versions = ['all', ...Array.from(new Set([GAME_VERSION, ...state.lbCachedRows.map(r => r.game_version).filter(Boolean)]))];
+        const escV = s => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+        bar.style.display = 'flex';
+        bar.innerHTML = '<span style="font-size:11px;letter-spacing:0.12em;color:var(--gold);margin-right:4px;">ADMIN VERSION:</span>' + versions.map(v =>
+          `<button type="button" class="admin-ver-pill ${state.lbVersionFilter === v ? 'active' : ''}" onclick="setAdminLbVersion('${escV(v)}')">${v === 'all' ? 'All Versions' : escV(v)}</button>`
+        ).join('');
+      }
+      if (box && list) {
+        box.style.display = 'block';
+        const escC = s => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+        list.innerHTML = GAME_VERSION_CHANGELOG.map(c =>
+          `<div style="margin-bottom:4px;"><strong style="color:var(--gold);">${escC(c.version)}</strong> (${escC(c.date)}): ${escC(c.summary)}</div>`
+        ).join('');
+      }
+    }
+
+    window.setAdminLbVersion = function (ver) {
+      state.lbVersionFilter = isAdminUser() ? String(ver || 'all') : 'all';
+      syncAdminLeaderboardUi();
+      renderLeaderboardRows();
+    };
+
+    function renderLeaderboardRows() {
+      const note = document.getElementById('lbStatusNote');
+      const body = document.getElementById('lbTableBody');
+      const allRows = Array.isArray(state.lbCachedRows) ? state.lbCachedRows : [];
+      const verFilter = isAdminUser() ? (state.lbVersionFilter || 'all') : 'all';
+      const rows = verFilter === 'all'
+        ? allRows
+        : allRows.filter(r => String(r.game_version || '').toLowerCase() === verFilter.toLowerCase());
+      if (rows.length === 0) {
+        note.textContent = state.selectedLbGameId === CURRENT_GAME_ID
+          ? 'Be the first to awaken Dawn and claim Rank #1 on Taar Kata Ektara!'
+          : 'No entries recorded yet.';
+        body.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--gold);padding:20px;">No entries yet — complete a level to post your score &amp; time!</td></tr>';
+        return;
+      }
+      note.textContent = `${rows.length} verified run(s) · Ranked by Highest Level → Score → Fastest Time`;
+      body.innerHTML = rows.slice(0, 50).map((r, idx) => {
+        const displayRank = Number(r.rank) || (idx + 1);
+        const rankCls = displayRank <= 3 ? 'lb-rank-pill top' : 'lb-rank-pill';
+        const esc = s => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+        return `<tr>
+          <td><span class="${rankCls}">#${displayRank}</span></td>
+          <td><strong>${esc(r.player_name || '@' + (r.username || 'player'))}</strong></td>
+          <td>L${Number(r.level) || 1}/5</td>
+          <td><strong>${(Number(r.score) || 0).toLocaleString()}</strong></td>
+          <td class="lb-time-badge">${esc(r.completion_time_formatted || '00:00.0')}</td>
+          <td>${esc(r.game_version || GAME_VERSION)}</td>
+          <td>${esc(r.social_handle || '—')}</td>
+        </tr>`;
+      }).join('');
+    }
+
     // Leaderboard Fetching & Strict Time-Based Display
     window.switchLeaderboardGame = function (gid) {
       state.selectedLbGameId = gid;
+      state.lbVersionFilter = 'all';
       document.querySelectorAll('#lbGameSwitcher .lb-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.gid === gid));
       document.getElementById('lbModalTitle').textContent = gid === 'daakbaksher-gaan'
         ? 'DaakBaksher Gaan — Letters in the Wind'
@@ -3324,38 +3498,21 @@ window.VOGUE_ENGINE_ART = (function () {
     window.refreshLeaderboard = async function () {
       const gate = document.getElementById('lbAuthGate'), pane = document.getElementById('lbContentPane');
       if (!state.isAuthenticated) {
-        gate.style.display = 'block'; pane.style.display = 'none'; return;
+        gate.style.display = 'block'; pane.style.display = 'none';
+        syncAdminLeaderboardUi();
+        return;
       }
       gate.style.display = 'none'; pane.style.display = 'block';
+      syncAdminLeaderboardUi();
       const note = document.getElementById('lbStatusNote');
-      const body = document.getElementById('lbTableBody');
       note.className = 'status-note'; note.textContent = 'Syncing live rankings from Unified_Games_Leaderboard…';
       try {
         const url = `${getWebhookUrl()}?game_id=${encodeURIComponent(state.selectedLbGameId)}&username=${encodeURIComponent(state.loggedInUser)}`;
         const res = await fetch(url);
         const data = await res.json();
-        const rows = (data && Array.isArray(data.leaderboard)) ? data.leaderboard : [];
-        if (rows.length === 0) {
-          note.textContent = state.selectedLbGameId === CURRENT_GAME_ID
-            ? 'Be the first to awaken Dawn and claim Rank #1 on Taar Kata Ektara!'
-            : 'No entries recorded yet.';
-          body.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--gold);padding:20px;">No entries yet — complete a level to post your score &amp; time!</td></tr>';
-          return;
-        }
-        note.textContent = `${rows.length} verified run(s) · Ranked by Highest Level → Score → Fastest Time`;
-        body.innerHTML = rows.slice(0, 50).map(r => {
-          const rankCls = r.rank <= 3 ? 'lb-rank-pill top' : 'lb-rank-pill';
-          const esc = s => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-          return `<tr>
-            <td><span class="${rankCls}">#${Number(r.rank) || 1}</span></td>
-            <td><strong>${esc(r.player_name || '@' + (r.username || 'player'))}</strong></td>
-            <td>L${Number(r.level) || 1}/5</td>
-            <td><strong>${(Number(r.score) || 0).toLocaleString()}</strong></td>
-            <td class="lb-time-badge">${esc(r.completion_time_formatted || '00:00.0')}</td>
-            <td>${esc(r.game_version || 'v1.0.0')}</td>
-            <td>${esc(r.social_handle || '—')}</td>
-          </tr>`;
-        }).join('');
+        state.lbCachedRows = (data && Array.isArray(data.leaderboard)) ? data.leaderboard : [];
+        syncAdminLeaderboardUi();
+        renderLeaderboardRows();
       } catch (e) {
         note.className = 'status-note err';
         note.textContent = 'Could not load live leaderboard right now.';
@@ -3615,14 +3772,139 @@ window.VOGUE_ENGINE_ART = (function () {
     };
 
     // =========================================================================
+    // SEAMLESS AUTO-ADVANCE (LEVELS 1-4) & GRAND FINALE (LEVEL 5)
+    // =========================================================================
+    function cancelAutoAdvance() {
+      if (state.autoAdvanceTimerId) { clearTimeout(state.autoAdvanceTimerId); state.autoAdvanceTimerId = null; }
+      if (state.autoAdvanceCountdownId) { clearInterval(state.autoAdvanceCountdownId); state.autoAdvanceCountdownId = null; }
+    }
+
+    function startAutoAdvance(durationMs = 3000) {
+      cancelAutoAdvance();
+      const totalMs = Math.max(200, Number(durationMs) || 3000);
+      const nextWorldNum = state.worldIdx + 2;
+      const nextWorldName = (WORLDS[state.worldIdx + 1] && WORLDS[state.worldIdx + 1].nameEn) || `World ${nextWorldNum}`;
+      const fillEl = document.getElementById('interludeCountdownFill');
+      const textEl = document.getElementById('interludeCountdownText');
+      const startedAt = performance.now();
+      if (fillEl) fillEl.style.width = '100%';
+      if (textEl) textEl.textContent = `Auto-entering World ${nextWorldNum} (${nextWorldName}) in ${Math.ceil(totalMs / 1000)}s…`;
+
+      state.autoAdvanceCountdownId = setInterval(() => {
+        const rem = Math.max(0, totalMs - (performance.now() - startedAt));
+        if (fillEl) fillEl.style.width = `${Math.max(0, Math.min(100, (rem / totalMs) * 100)).toFixed(1)}%`;
+        if (textEl) textEl.textContent = `Auto-entering World ${nextWorldNum} (${nextWorldName}) in ${Math.max(1, Math.ceil(rem / 1000))}s…`;
+      }, 80);
+
+      state.autoAdvanceTimerId = setTimeout(() => {
+        cancelAutoAdvance();
+        if (state.levelCompleteOpen && state.worldIdx < WORLDS.length - 1 && !anyModalOpen()) {
+          proceedNextWorld();
+        }
+      }, totalMs);
+    }
+
+    function syncFinaleAuthCta() {
+      const isFinale = state.levelCompleteOpen && state.worldIdx >= WORLDS.length - 1;
+      if (!isFinale) return;
+      const certBtn = document.getElementById('btnInterludeCert');
+      const hint = document.getElementById('finaleHint');
+      if (certBtn) {
+        certBtn.textContent = state.isAuthenticated
+          ? 'Claim & Download 9:16 Certificate'
+          : 'Sign In to Download 9:16 Certificate';
+      }
+      if (hint) {
+        hint.textContent = state.isAuthenticated
+          ? `Signed in as @${state.loggedInUser} — claim & download your official 9:16 Vogue Noir Certificate below, or try other #ABHIKISM games & songs!`
+          : 'You finished the game! Sign in or create a free #ABHIKISM account to claim & download your official 9:16 Vogue Noir Certificate — or explore more games & songs below.';
+      }
+    }
+
+    function showDawnInterludeForCurrentWorld(world, fmtTime) {
+      const overlay = document.getElementById('dawnInterlude');
+      const eyebrow = document.getElementById('interludeEyebrow');
+      const title = document.getElementById('interludeTitle');
+      const quote = document.getElementById('interludeQuote');
+      const meta = document.getElementById('interludeMeta');
+      const cdWrap = document.getElementById('interludeCountdownWrap');
+      const finaleHint = document.getElementById('finaleHint');
+      const finaleLinks = document.getElementById('finaleLinksWrap');
+      const btnNext = document.getElementById('btnNextWorld');
+      const btnCert = document.getElementById('btnInterludeCert');
+      const isFinale = state.worldIdx >= WORLDS.length - 1;
+
+      overlay.classList.toggle('finale-mode', isFinale);
+      if (isFinale) {
+        cancelAutoAdvance();
+        eyebrow.textContent = 'L’AUBE ABSOLUE · ALL 5 WORLDS AWAKENED';
+        title.textContent = 'You Finished Taar Kata Ektara!';
+        quote.textContent = world.lyricQuoteBn;
+        meta.textContent = `All 5 Worlds Complete · Score ${state.totalScore.toLocaleString()} PTS · Time ${fmtTime}`;
+        cdWrap.style.display = 'none';
+        finaleHint.style.display = 'block';
+        finaleLinks.style.display = 'block';
+        btnNext.style.display = 'none';
+        btnCert.className = 'cover-cta';
+        btnCert.style.background = '';
+        btnCert.style.color = '';
+        syncFinaleAuthCta();
+      } else {
+        const nextW = WORLDS[state.worldIdx + 1];
+        eyebrow.textContent = 'L’AUBE SE LÈVE · MORNING AWAKENED';
+        title.textContent = `${world.nameEn} Illuminated`;
+        quote.textContent = world.lyricQuoteBn;
+        meta.textContent = `Level ${world.level}/5 Complete · Score ${state.totalScore.toLocaleString()} PTS · Time ${fmtTime}`;
+        cdWrap.style.display = 'block';
+        finaleHint.style.display = 'none';
+        finaleLinks.style.display = 'none';
+        btnNext.style.display = 'inline-block';
+        btnNext.textContent = `Enter World ${state.worldIdx + 2}: ${nextW.nameEn} Now`;
+        btnCert.className = 'cover-sub-btn';
+        btnCert.style.background = '#12101A';
+        btnCert.style.color = '#FAF3E6';
+        btnCert.textContent = `Claim Level ${world.level} Certificate`;
+        if (!IS_AUTOTEST_ENV) {
+          startAutoAdvance(3000);
+        } else {
+          const fillEl = document.getElementById('interludeCountdownFill');
+          const textEl = document.getElementById('interludeCountdownText');
+          if (fillEl) fillEl.style.width = '100%';
+          if (textEl) textEl.textContent = `Auto-entering World ${state.worldIdx + 2} (${nextW.nameEn}) in 3s…`;
+        }
+      }
+      overlay.classList.add('show');
+    }
+
+    window.openCertFromInterlude = function () {
+      cancelAutoAdvance();
+      openCertModal();
+    };
+    window.openLeaderboardFromInterlude = function () {
+      cancelAutoAdvance();
+      openLeaderboardModal();
+    };
+
+    // =========================================================================
     // MODAL & NAVIGATION HANDLERS
     // =========================================================================
     function pauseForOverlay() {
+      cancelAutoAdvance();
       pauseTimer();
       if (document.pointerLockElement) { try { document.exitPointerLock(); } catch (_) {} }
     }
-    window.closeModal = function (id) {
+    window.closeModal = function (id, keepPending = false) {
       document.getElementById(id).classList.remove('open');
+      if (!keepPending && state.levelCompleteOpen && !anyModalOpen()) {
+        if (state.worldIdx < WORLDS.length - 1) {
+          proceedNextWorld();
+          return;
+        } else {
+          syncFinaleAuthCta();
+          document.getElementById('dawnInterlude').classList.add('show');
+          return;
+        }
+      }
       if (state.started && !state.levelCompleteOpen && !anyModalOpen()) startTimer();
     };
     window.openAuthModal = function () {
@@ -3696,6 +3978,7 @@ window.VOGUE_ENGINE_ART = (function () {
       requestFpsLock();
     };
     window.proceedNextWorld = function () {
+      cancelAutoAdvance();
       const nextIdx = (state.worldIdx + 1) % WORLDS.length;
       if (nextIdx === 0) { state.elapsedMs = 0; state.totalScore = 0; }
       spawnWorld(nextIdx);
@@ -3718,6 +4001,8 @@ window.VOGUE_ENGINE_ART = (function () {
         totalScore: state.totalScore, elapsedMs: getElapsedMs(),
         px: state.px, py: state.py, pz: state.pz, yaw: state.yaw, pitch: state.pitch,
         vx: state.vx, vz: state.vz, moonScale: state.moonScale, shardsCount: state.shards.length,
+        entitiesCount: state.entities.length, liftingCount: state.liftingWords.length,
+        levelCompleteOpen: state.levelCompleteOpen, isAdmin: isAdminUser(),
         hasAchievement: !!state.completedAchievement,
         renderedHits: state.renderedHits.map(h => ({ id: h.ent.id, isSong: h.ent.isSong, sx: Math.round(h.sx), sy: Math.round(h.sy), dist: +h.dist.toFixed(1) }))
       }),
@@ -3725,7 +4010,10 @@ window.VOGUE_ENGINE_ART = (function () {
       step: (dt) => { update(dt); render(); },
       collectNextSong: () => { const e = state.entities.find(x => x.isSong); if (e) handleCollect(e, window.innerWidth * 0.5, window.innerHeight * 0.5); render(); },
       collectNextDecoy: () => { const e = state.entities.find(x => !x.isSong); if (e) handleCollect(e, window.innerWidth * 0.5, window.innerHeight * 0.5); render(); },
-      clickAt: (x, y) => { render(); const h = hitTestScreen(x, y); return h ? { hit: true, selected: trySelectEntity(h, x, y) } : { hit: false }; }
+      clickAt: (x, y) => { render(); const h = hitTestScreen(x, y); return h ? { hit: true, selected: trySelectEntity(h, x, y) } : { hit: false }; },
+      setTestAuth: (u, role) => { saveSession(u, 'tke_qa_tok', `${u}@example.com`, role); state.lbCachedRows = [{ rank: 1, player_name: '@abhik', username: 'abhik', level: 5, score: 4200, completion_time_formatted: '01:12.4', game_version: GAME_VERSION, social_handle: '@abhikism' }]; syncAdminLeaderboardUi(); renderLeaderboardRows(); },
+      clearTestAuth: () => { state.isAuthenticated = false; state.loggedInUser = ''; state.userRole = 'member'; state.sessionToken = ''; try { localStorage.removeItem(SESSION_STORAGE_KEY); } catch (_) {} syncAuthUI(); },
+      completeCurrentWorld: () => { const w = WORLDS[state.worldIdx]; while (!state.levelCompleteOpen && state.entities.length > 0) { const e = state.entities.find(x => x.isSong); if (!e) break; handleCollect(e, window.innerWidth * 0.5, window.innerHeight * 0.5); } render(); }
     };
 
     let lastTs = performance.now();

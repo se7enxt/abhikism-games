@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ডাকবাক্সের গান (DaakBaksher Gaan) — Interactive 2D Wind &amp; Postbox Game (v8.0.0) | #ABHIKISM Arcade</title>
+  <title>ডাকবাক্সের গান (DaakBaksher Gaan) — Interactive 2D Wind &amp; Postbox Game (v8.1.0) | #ABHIKISM Arcade</title>
   <meta name="description" content="Play DaakBaksher Gaan (ডাকবাক্সের গান) — #ABHIKISM's interactive Saul Bass constructivist 2D wind &amp; postbox word game. Catch 125 Bengali &amp; Romanized lyric letters across 5 automatic wind levels, climb the unified arcade leaderboard, and earn your 9:16 Listener Certificate.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://games.abhikism.com/daakbaksher-gaan/">
@@ -36,7 +36,7 @@
         "operatingSystem": "Any",
         "playMode": "SinglePlayer",
         "inLanguage": ["bn", "en"],
-        "softwareVersion": "v8.0.0",
+        "softwareVersion": "v8.1.0",
         "isAccessibleForFree": true,
         "author": {
           "@type": "MusicGroup",
@@ -1986,6 +1986,156 @@
       }
     }
 
+    /* v8.1.0 Level Complete Auto-Advance & Level 5 Grand Finale Overlays (Zero-Streaming-at-100%) */
+    .stage-celebration-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 95;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(10, 11, 15, 0.86);
+      backdrop-filter: blur(6px);
+      overflow-y: auto;
+    }
+    .stage-celebration-overlay.open {
+      display: flex;
+    }
+    .celebration-card {
+      width: min(94vw, 560px);
+      background: #14161E;
+      border: 2.5px solid var(--saul-crimson);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.78), 0 0 0 1px rgba(229, 207, 152, 0.35) inset;
+      border-radius: 14px;
+      padding: 22px 24px;
+      text-align: center;
+      color: var(--saul-cream);
+      max-height: 92%;
+      overflow-y: auto;
+    }
+    .celebration-card.finale-card {
+      width: min(95vw, 620px);
+      border-color: var(--saul-ochre);
+      background: linear-gradient(160deg, #18141A 0%, #101219 55%, #1E0D11 100%);
+    }
+    .celebration-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--saul-ochre);
+      margin-bottom: 6px;
+    }
+    .celebration-title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 800;
+      color: var(--saul-cream);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .celebration-stats {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #F5EFE1;
+      background: rgba(199, 36, 43, 0.18);
+      border: 1px solid rgba(229, 207, 152, 0.45);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin: 10px 0 12px;
+      line-height: 1.5;
+    }
+    .celebration-sub {
+      font-size: 13px;
+      color: #D7D0C1;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .advance-countdown-track {
+      width: 100%;
+      height: 7px;
+      border-radius: 99px;
+      background: #232634;
+      overflow: hidden;
+      margin: 8px 0 6px;
+      border: 1px solid #34384A;
+    }
+    .advance-countdown-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--brand-teal), var(--saul-ochre), var(--saul-crimson));
+      transition: width 0.1s linear;
+    }
+    .advance-countdown-label {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--saul-ochre);
+      margin-bottom: 14px;
+    }
+    .celebration-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 8px;
+    }
+    .celebration-actions a.ink-btn,
+    .celebration-actions button.ink-btn {
+      text-decoration: none;
+      min-height: 40px;
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+    .finale-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 8px;
+      margin: 12px 0 10px;
+    }
+    .finale-link-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 10px 10px;
+      border-radius: 9px;
+      background: #1B1E29;
+      border: 1.5px solid #353A4E;
+      color: #F5EFE1;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform 0.14s ease, border-color 0.14s ease;
+    }
+    .finale-link-tile:hover {
+      transform: translateY(-2px);
+      border-color: var(--saul-ochre);
+    }
+    .finale-link-tile small {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--saul-ochre);
+    }
+    @media (max-height: 500px) {
+      .celebration-card {
+        padding: 12px 16px;
+      }
+      .celebration-title {
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+      .celebration-stats, .celebration-sub {
+        font-size: 11px;
+        margin: 6px 0;
+      }
+    }
+
     /* Single-row compact landscape dock (e.g. 844x390, 640x340) so dock controls never collide or wrap */
     @media (max-height: 450px) {
       #btn-mute-toggle,
@@ -2043,10 +2193,10 @@
         🎮 All Games
       </a>
       <span class="hanko-seal-badge">ডাকবাক্স</span>
-      <span class="version-badge" id="game-version-badge" onclick="openLeaderboardModal()" title="Semantic Game Version (X=Feature, Y=BugFix, Z=Additional) — Click to view Leaderboard &amp; Changelog">v8.0.0</span>
+      <span class="version-badge" id="game-version-badge" onclick="openLeaderboardModal()" title="Semantic Game Version (X=Feature, Y=BugFix, Z=Additional) — Click to view Leaderboard &amp; Changelog">v8.1.0</span>
       <div class="game-title-block">
         <h1 class="game-title-main" id="ui-game-title">ডাকবাক্সের গান — বাতাসের চিঠি</h1>
-        <span class="game-title-sub">DaakBaksher Gaan • Saul Bass Wind Game (WKS-003 • v8.0.0)</span>
+        <span class="game-title-sub">DaakBaksher Gaan • Saul Bass Wind Game (WKS-003 • v8.1.0)</span>
       </div>
     </div>
 
@@ -2274,6 +2424,54 @@
 
     <!-- Quiet Whisper Feedback Banner -->
     <div id="feedback-whisper" role="status" aria-live="polite"></div>
+
+    <!-- v8.1.0 Level 1-4 Auto-Advance Overlay (Zero Streaming Words at 100%) -->
+    <div id="level-advance-overlay" class="stage-celebration-overlay" role="dialog" aria-modal="false" aria-labelledby="advance-overlay-title">
+      <div class="celebration-card">
+        <div class="celebration-eyebrow" id="advance-overlay-eyebrow">⚡ LEVEL 1/5 COMPLETE • 100% FULL</div>
+        <h2 class="celebration-title" id="advance-overlay-title">📮 ডাকবাক্স সম্পূর্ণ! Level 1 Cleared</h2>
+        <div class="celebration-stats" id="advance-overlay-stats">Score: 0 PTS • Time: 00:00.0 • Next: Level 2 (15 Words • 1.35x Wind)</div>
+        <div class="advance-countdown-track"><div class="advance-countdown-fill" id="advance-countdown-fill"></div></div>
+        <div class="advance-countdown-label" id="advance-countdown-label">Advancing to Level 2 in 3s…</div>
+        <div class="celebration-actions">
+          <button type="button" class="ink-btn active-toggle" id="btn-overlay-next-now" onclick="advanceToNextLevel()">🌪️ Next Level Now →</button>
+          <button type="button" class="ink-btn vermilion-btn" id="btn-overlay-claim-cert" onclick="openCertificateFromAdvanceOverlay()">📜 Claim Level 1 Certificate</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- v8.1.0 Level 5 Grand Finale Victory Overlay -->
+    <div id="grand-finale-overlay" class="stage-celebration-overlay" role="dialog" aria-modal="false" aria-labelledby="finale-overlay-title">
+      <div class="celebration-card finale-card">
+        <div class="celebration-eyebrow">🏆 ALL 5 WIND LEVELS CONQUERED • MASTER CYCLONE COMPLETE</div>
+        <h2 class="celebration-title" id="finale-overlay-title">🎉 You Finished DaakBaksher Gaan!</h2>
+        <div class="celebration-stats" id="finale-overlay-stats">All 125 Words Collected • Score: 0 PTS • Time: 00:00.0 • 2.75x Wind</div>
+        <p class="celebration-sub" id="finale-auth-hint">
+          You finished the game! Sign in or create a free account to claim &amp; download your official 9:16 Listener Certificate — or explore more #ABHIKISM games &amp; songs below.
+        </p>
+        <div class="celebration-actions" style="margin-bottom:10px;">
+          <button type="button" class="ink-btn vermilion-btn" id="btn-finale-cert-cta" onclick="openCertificateFromGrandFinale()">🔐 Sign In to Download 9:16 Certificate</button>
+          <button type="button" class="ink-btn teal-btn" id="btn-finale-leaderboard" onclick="openLeaderboardFromGrandFinale()">🏆 Official Leaderboard</button>
+        </div>
+        <div class="finale-links-grid">
+          <a class="finale-link-tile" href="https://games.abhikism.com/taar-kata-ektara/" id="link-finale-tke">
+            <span>🎻 Play Taar Kata Ektara</span>
+            <small>3D First-Person · 5 Pre-Dawn Worlds</small>
+          </a>
+          <a class="finale-link-tile" href="https://games.abhikism.com/" onclick="return navigateToGamesHub(event)" id="link-finale-all-games">
+            <span>🎮 Try Other #ABHIKISM Games</span>
+            <small>games.abhikism.com Arcade Hub</small>
+          </a>
+          <a class="finale-link-tile" href="https://songs.abhikism.com/" target="_blank" rel="noopener" id="link-finale-songs">
+            <span>🎵 Listen to More Songs</span>
+            <small>songs.abhikism.com Discography</small>
+          </a>
+        </div>
+        <div class="celebration-actions">
+          <button type="button" class="ink-btn" id="btn-finale-replay" onclick="replayFromGrandFinale()">↻ Play Again (Level 1)</button>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- ==============================================================
@@ -2418,7 +2616,7 @@
       <div id="completion-level-banner" style="background:rgba(0,90,81,0.08); border:1.5px solid var(--brand-teal); border-radius:8px; padding:10px 14px; margin-bottom:14px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <div>
           <div style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--brand-teal);" id="completion-level-headline">
-            ⚡ LEVEL 1/5 COMPLETE • TIME: 00:00.0 • VERSION: v8.0.0
+            ⚡ LEVEL 1/5 COMPLETE • TIME: 00:00.0 • VERSION: v8.1.0
           </div>
           <div style="font-size:11.5px; color:var(--sumi-charcoal);" id="completion-level-subline">
             Next up: Level 2/5 (15 Words • 1.35x Wind Speed). You can claim your certificate now or advance immediately!
@@ -2497,7 +2695,7 @@
               🔒 Please log in or create a username &amp; password above to enter your social media links and claim your certificate.
             </div>
             <p style="font-size:12px; color:var(--sumi-charcoal); margin-bottom:10px;">
-              Select one or multiple social platforms below, enter your handle or profile link for each selected platform (auto-checked &amp; formatted), and give consent to issue your personalized <strong>9:16 Certificate</strong> and record your time on the <strong>v8.0.0 Leaderboard</strong>.
+              Select one or multiple social platforms below, enter your handle or profile link for each selected platform (auto-checked &amp; formatted), and give consent to issue your personalized <strong>9:16 Certificate</strong> and record your time on the <strong>v8.1.0 Leaderboard</strong>.
             </p>
 
             <div class="field-group">
@@ -2640,7 +2838,7 @@
           <!-- Compact Inline Leaderboard Preview inside Completion Modal (Gated by Login) -->
           <div class="form-section-box" id="completion-leaderboard-preview-box" style="margin-bottom:0;">
             <div class="form-section-title" style="justify-content:space-between; flex-wrap:wrap; gap:6px;">
-              <span>🏆 Top Wind Postbox Winners (v8.0.0)</span>
+              <span>🏆 Top Wind Postbox Winners (v8.1.0)</span>
               <span style="display:inline-flex; gap:6px; align-items:center;">
                 <a href="https://games.abhikism.com/" class="ink-btn" onclick="return navigateToGamesHub(event)" style="padding:2px 8px; font-size:10.5px; text-decoration:none;">🎮 All Games</a>
                 <button type="button" class="ink-btn" style="padding:2px 8px; font-size:10.5px;" onclick="openLeaderboardModal()">Full Leaderboard →</button>
@@ -2656,7 +2854,7 @@
         <!-- Right Column: 9:16 Vertical Certificate Canvas Preview & Download -->
         <div class="cert-preview-column" id="cert-preview-column">
           <div style="font-size:12px; font-weight:700; color:var(--sumi-charcoal);">
-            9:16 Story Certificate (1080 × 1920 px • v8.0.0)
+            9:16 Story Certificate (1080 × 1920 px • v8.1.0)
           </div>
           <div id="cert-incomplete-lock-card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:10px; width:100%; max-width:270px; min-height:260px; padding:20px 16px; border:2px dashed var(--sumi-ink); border-radius:10px; background:rgba(26,24,23,0.04); color:var(--sumi-charcoal); font-size:12px; line-height:1.5;">
             <div style="font-size:28px;">🔒</div>
@@ -2673,7 +2871,7 @@
             </button>
           </div>
           <span style="font-size:10.5px; color:var(--sumi-wash); text-align:center;">
-            v8.0.0 Official Edition • Stamped with Completion Time, Level &amp; Version
+            v8.1.0 Official Edition • Stamped with Completion Time, Level &amp; Version
           </span>
         </div>
       </div>
@@ -2707,7 +2905,7 @@
         <div>
           <h2 class="modal-title" id="leaderboard-modal-title">🏆 ডাকবাক্সের গান — Official Wind Leaderboard &amp; Winners</h2>
           <p style="font-size:12px; color:var(--sumi-wash);">
-            Verified 100% Complete Postbox Champions • Ranked by Level, Score &amp; Fastest Completion Time • Current Build: <strong id="lb-modal-version-label">v8.0.0</strong>
+            Verified 100% Complete Postbox Champions • Ranked by Level, Score &amp; Fastest Completion Time • Current Build: <strong id="lb-modal-version-label">v8.1.0</strong>
           </p>
         </div>
         <button type="button" class="modal-close-btn" onclick="closeLeaderboardModal()" aria-label="Close Leaderboard">✕</button>
@@ -2793,9 +2991,10 @@
             <button type="button" class="lb-filter-btn" data-lb-level="1" onclick="filterLeaderboard('level', '1')">Lv 1 (5w • 1.0x)</button>
           </div>
 
-          <div class="leaderboard-filter-group" id="lb-version-filters" role="group" aria-label="Filter by Game Version">
-            <span style="font-family:var(--font-mono); font-size:10.5px; font-weight:700; color:var(--sumi-wash);">VERSION:</span>
+          <div class="leaderboard-filter-group" id="lb-version-filters" role="group" aria-label="Filter by Game Version" style="display:none;">
+            <span style="font-family:var(--font-mono); font-size:10.5px; font-weight:700; color:var(--sumi-wash);">ADMIN VERSION FILTER:</span>
             <button type="button" class="lb-filter-btn active" data-lb-version="all" onclick="filterLeaderboard('version', 'all')">All Versions</button>
+            <button type="button" class="lb-filter-btn" data-lb-version="v8.1.0" onclick="filterLeaderboard('version', 'v8.1.0')">v8.1.0</button>
             <button type="button" class="lb-filter-btn" data-lb-version="v8.0.0" onclick="filterLeaderboard('version', 'v8.0.0')">v8.0.0</button>
             <button type="button" class="lb-filter-btn" data-lb-version="v7.1.0" onclick="filterLeaderboard('version', 'v7.1.0')">v7.1.0</button>
             <button type="button" class="lb-filter-btn" data-lb-version="v7.0.0" onclick="filterLeaderboard('version', 'v7.0.0')">v7.0.0</button>
@@ -2813,10 +3012,10 @@
 
         <div id="leaderboard-list" class="leaderboard-table-wrap"></div>
 
-        <!-- Semantic Version Changelog Registry (Visible ONLY to Logged-in Members) -->
-        <div style="margin-top:14px; padding-top:10px; border-top:1px dashed var(--sumi-border); font-size:11px; color:var(--sumi-wash);" id="version-changelog-box">
+        <!-- Semantic Version Changelog Registry (Visible ONLY to Signed-in @admin) -->
+        <div style="display:none; margin-top:14px; padding-top:10px; border-top:1px dashed var(--sumi-border); font-size:11px; color:var(--sumi-wash);" id="version-changelog-box">
           <div style="font-family:var(--font-mono); font-weight:700; color:var(--sumi-charcoal); margin-bottom:4px;">
-            📦 Semantic Versioning Registry (vX.Y.Z — X: Feature Addition, Y: Bug Fix, Z: Additional):
+            📦 Admin Semantic Versioning Registry (vX.Y.Z — X: Feature Addition, Y: Bug Fix, Z: Additional):
           </div>
           <div id="version-changelog-list"></div>
         </div>
@@ -2833,10 +3032,10 @@
     const CURRENT_GAME_TITLE = "DaakBaksher Gaan";
     const CURRENT_SONG_ID = "daakbaksher-gaan";
     const CURRENT_GAME_CATEGORY = "song_game";
-    const GAME_VERSION = "v8.0.0";
-    const GAME_VERSION_CHANGELOG = [{"version": "v8.0.0", "date": "2026-11-13", "summary": "Upgraded to the Unified Multi-Game #ABHIKISM Arcade Hub & Cross-Game Leaderboard architecture (Schema 3.0) with live-only game discovery switchers across the in-game Leaderboard modal and games.abhikism.com, consolidated multi-game telemetry, and hardened public read endpoints.", "X_feature_additions": ["Cross-Game Leaderboard Switcher (#lb-game-switcher-bar): Switch between live playable #ABHIKISM games directly inside the Leaderboard modal and launch any selected game or listen to its song", "Unified Games Arcade Hub Leaderboard (#arcade-unified-leaderboard-section): Authenticated cross-game leaderboard viewer on games.abhikism.com powered by shared registry and live cloud synchronization", "Multi-Game Telemetry Routing (Schema 3.0): Every Step 1, download, and Step 2 payload carries canonical game_id, game_title, song_id, and category metadata across local storage, DashboardServer, and Google Apps Script", "Hardened Public Read Endpoint: Cloud directory and leaderboard feeds expose only live games and strip private certificate IDs and Step 2 personal contact fields"], "Y_bug_fixes": ["Deduplicated localhost vs browser direct-webhook relays using server_relayed_webhook guards while preventing synthetic autotest IDs from reaching live cloud endpoints"], "Z_additional": ["Added v8.0.0 Leaderboard version filter pill and DBG-V80-SEED-L5 benchmark entry synchronized across version_manifest.json, games_registry.json, and all deployment mirrors"]}, {"version": "v7.1.0", "date": "2026-11-04", "summary": "Restored authentic Saul Bass linocut crimson postbox base silhouette matching official poster, fixed dark-mode contrast across HUD pills, Auth gates, Leaderboard rows, Lexicon chips, and mobile breakpoints, and aligned games.abhikism.com Arcade Hub with the Saul Bass noir aesthetic.", "X_feature_additions": [], "Y_bug_fixes": ["Fixed postbox 0% base color override in updateScoreAndPostboxCompleteness() so the Victorian pillar box renders in shadowed Saul Bass woodcut crimson (#8E181E -> #C7242B) with linocut black plinth/collar instead of legacy stone-beige", "Fixed white-on-cream contrast regressions on .back-songs-link, .modal-close-btn, .lb-rank-badge, .lb-tag-level, .lb-tag-score, and logged-in @username badges", "Replaced legacy light card backgrounds (#FFFFFF / #F4FBF9 / #FAF7F2) in Leaderboard rows, Auth gates, Social input rows, Lexicon chips, and mobile instruction banner with high-contrast Saul Bass noir surfaces", "Removed redundant outer mobile padding on .floating-word-slip so bilingual text stays centered beneath the origami envelope fold flap"], "Z_additional": ["Upgraded games.abhikism.com Arcade Hub to match the Saul Bass constructivist noir identity with High-Contrast toggle and v7.1.0 version filter pill"]}, {"version": "v7.0.0", "date": "2026-11-04", "summary": "Full Saul Bass constructivist linocut visual redesign matching official poster (Option 3), pure dark mode palette with high-contrast toggle, proportional responsive physics engine, angular papercut wave horizon, and Option 1 origami folded envelope word slips with unified bilingual typography.", "X_feature_additions": ["Saul Bass Constructivist Redesign: Complete visual overhaul matching official poster (ABHIKISM_VISUAL_PosterOpt3DaakBaksherGaanSaulBass_v2.0_20261013_FINAL.jpg) featuring inky void black (#0E0F12), Saul Bass crimson (#C7242B), aged woodblock cream (#F5EFE1), and warm ochre (#E5CF98)", "Linocut Victorian Pillar Postbox: Authentic Saul Bass silhouette with faceted dome cap, dentil trim collar, cream contour linocut outline (#F5EFE1), glowing letter cavity, and center enamel plaque", "Angular Horizon Waves: Multi-layered constructivist papercut wave silhouettes (#E5CF98 ochre, #C7242B crimson, and #0E0F12 inky silhouette with cream crest trim) anchoring the stage baseline", "Origami Folded Envelopes: Option 1 geometric folded cream paper slips with triangular fold flap, diagonal creases, and crimson corner fold accent", "Unified Bilingual Typography: Identical layout for both song words and decoy words (bold Bengali script + uppercase English romanization, zero decoy labeling)", "Saul Bass Dark Mode & High-Contrast Toggle: Permanent dark aesthetic with one-click toggle (#btn-theme-toggle) between Classic Saul Bass Noir and High-Contrast Graphic Noir"], "Y_bug_fixes": ["Eliminated awkward window resize jumping by removing abrupt (entity.x / prevW) * stageWidth coordinate recalculations and transitioning to smooth normalized vertical lane distribution (laneRatio)", "Implemented proportional postbox scaling using CSS clamp() (clamp(140px, 16vw, 195px)) to prevent collision with top HUD on small viewports", "Removed redundant single-script romanisation toggle button in favor of unified bilingual origami envelopes"], "Z_additional": ["Added v7.0.0 Leaderboard version filter pill, updated version badges across HUD and certificate canvas, and comprehensive test suite validation for v7.0.0"]}, {"version": "v6.1.0", "date": "2026-11-04", "summary": "Fixed broken canonical streaming links (verified Spotify track 5ZrfaZ8vM5pXGJaee4NKW1 & YouTube Music track mPZvSvhKr88) and eliminated mobile tab reload/crash triggers (throttled 60 FPS postMessage IPC to 250ms interval, removed top-navigation sandbox vulnerability, and removed getElementById monkey-patching).", "X_feature_additions": [], "Y_bug_fixes": ["Replaced placeholder/search DSP links with verified canonical URLs: Spotify (5ZrfaZ8vM5pXGJaee4NKW1), YouTube Music (mPZvSvhKr88), and YouTube Video (mPZvSvhKr88) across game dock, embed tray, and onelink discography", "Eliminated 60 FPS postMessage IPC flooding in requestAnimationFrame by moving syncYouTubeTelemetryTick to a throttled 250ms interval active only during YouTube playback", "Removed allow-top-navigation-by-user-activation sandbox permission from Apple Music embed iframe to prevent accidental top-level mobile page navigation and reloads", "Removed global document.getElementById monkey-patching to restore native DOM lookup performance in mobile WebKit/Blink"], "Z_additional": ["Added v6.1.0 Leaderboard version filter pill and updated all test suite assertions to v6.1.0 with canonical DSP track verification"]}, {"version": "v6.0.0", "date": "2026-11-03", "summary": "Level-based wrong word penalty progression (0%, 20%, 100%, 200%, 500%), time-scaled speed scoring (round((Raw Score / Seconds) * 100)), tightened authentic Hanko fingerprint seal, wax dot mark removal from envelope slips, username placeholder cleanup, authenticated-only version registry, and arcade portal launch for games.abhikism.com.", "X_feature_additions": ["Level-based wrong word penalties: Level 1 (0%), Level 2 (20% = 20 pts), Level 3 (100% = 100 pts), Level 4 (200% = 200 pts), Level 5 (500% = 500 pts)", "Arcade Speed Index scoring: Final Score = round((Raw Score / Elapsed Seconds) * 100), massively rewarding fast completions", "Launched games.abhikism.com Arcade Hub featuring Daakbaksher Gaan as the featured #1 game with level badges and direct play link"], "Y_bug_fixes": ["Tightened authentic Hanko double square frame (156px) around the #ABHIKISM fingerprint seal on the 9:16 certificate", "Removed wax seal dot mark from floating word envelope flaps for clean vector paper folds", "Changed username input placeholder to 'e.g. username' (replacing 'e.g. abhik_listener')", "Gated Semantic Versioning Registry so it is only visible to logged-in users inside the Leaderboard modal"], "Z_additional": ["Added v6.0.0 Leaderboard version filter pill and comprehensive automated test suite coverage for penalty progression and speed scoring"]}, {"version": "v5.0.0", "date": "2026-11-02", "summary": "UI refinements for Daakbaksher Gaan (postbox plaque cleaned up with centered percentage indicator, envelope-shaped floating word slips with postal flap styling), user self-service data viewing and soft-deletion portal (user.abhikism.com), and privacy hardening.", "X_feature_additions": ["Official #ABHIKISM fingerprint Hanko seal stamped on 9:16 Certificate of Authenticity", "User self-service data viewing and soft-deletion portal deployed at user.abhikism.com with active view filtering", "Envelope-shaped floating word slips with postal flap styling and WCAG touch compliance"], "Y_bug_fixes": ["Postbox plaque cleaned up: removed 'abhikism' and 'daakbaksho' text, centered completion percentage indicator"], "Z_additional": ["Added v5.0.0 Leaderboard version filter pill and extended 9-test automated test suite"]}, {"version": "v4.1.0", "date": "2026-11-01", "summary": "Fixed 0% completeness certificate bug by removing the 0 || targetWords fallback and strictly gating the 9:16 certificate preview, issue button, download button, and HUD certificate button behind 100% postbox completeness.", "X_feature_additions": [], "Y_bug_fixes": ["Fixed 0% completeness bug where 0 collected words fell back to targetWords (0 || 5 -> 5) and rendered a fake 100% Complete certificate preview", "Added syncCertificateCompletionGate() to hide the HUD 9:16 Certificate button (#btn-open-certificate), certificate canvas frame (.cert-canvas-frame), issue button (#btn-generate-cert), and download button (#btn-download-cert) whenever postbox completeness is below 100%", "Added locked certificate state card (#cert-incomplete-lock-card) in the modal when opened via Account Login at <100% completeness, and added hard guard in downloadCertificate9x16() and backend API against <100% completeness"], "Z_additional": ["Added v4.1.0 Leaderboard version filter pill and headless Chrome assertions for 0% vs 100% completeness certificate gating"]}, {"version": "v4.0.0", "date": "2026-11-01", "summary": "Added Username + Created Password Authentication gating social media profile links, voluntary personal info, and Leaderboard visibility; implemented mobile UI touch/viewport fixes (6-word compact density, 44px touch targets, single-row landscape dock) and Zero-Client-Exposure privacy hardening.", "X_feature_additions": ["Username + Created Password authentication system (registerUserAccount, loginUserAccount, submitUserAuth, logoutUserAccount) with salted SHA-256 / PBKDF2 password hashing", "Authenticated access gate for entering social media links (#cert-step1-box) and voluntary personal info (#cert-step2-voluntary-box) in the 9:16 Certificate modal", "Members-only Official Leaderboard gate (#leaderboard-auth-gate & /api/game-leaderboard) visible exclusively to logged-in users while displaying verified names and social profiles"], "Y_bug_fixes": ["Fixed mobile touch drag responsiveness with cached stage bounds, explicit releasePointerCapture, touch-action: none, and WCAG 44px touch targets", "Implemented Option A adaptive word density (6 concurrent words on compact mobile <=420px wide or <=480px tall, 10 on desktop/tablet) and clamped initial mobile spawn X inside visible bounds away from the postbox", "Fixed 844x390 landscape dock collision, 340x640 Completeness cell clipping, duplicate mobile HUD audio buttons, and repositioned #feedback-whisper to top of stage", "Remediated client bundle privacy by stripping all internal notification email addresses, third-party relay tokens, and cloud document IDs from client HTML/JS and API responses"], "Z_additional": ["Added v4.0.0 Leaderboard version filter pill, top HUD account status button (#btn-user-auth), and honeypot anti-spam protection"]}, {"version": "v3.1.0", "date": "2026-11-01", "summary": "Fixed backend notification links by binding canonical public URLs (https://songs.abhikism.com/daakbaksher-gaan/game/), blocking local loopback Referer leakage, and adding server-side relay synchronization.", "X_feature_additions": [], "Y_bug_fixes": ["Fixed broken local loopback link in notification dispatches by setting canonical game URLs (https://songs.abhikism.com/daakbaksher-gaan/game/) and blocking direct browser calls from 127.0.0.1/localhost/file:", "Added server-side authenticated notification relay and cloud sync so notifications arrive reliably"], "Z_additional": ["Added v3.1.0 Leaderboard version filter pill and clickable game_url / leaderboard_url links inside notification payloads"]}, {"version": "v3.0.0", "date": "2026-10-31", "summary": "YouTube Music embedded player looping by default with smart error detection fallback to Instant Web Audio, continuous autoplay by default, and exclusive Mute/Unmute + Play from Beginning (0:00) controls (zero Stop/Pause).", "X_feature_additions": ["YouTube Music embedded player (8K1B2qG3U7E) active and looping by default via YouTube IFrame API with automatic loop-on-end and auto-resume-on-pause enforcement", "Smart audio error detection (smartDetectAudioErrorAndFallback / window.triggerSmartAudioErrorFallback) detecting YT.Player onError events, iframe API script blocks, offline states, and watchdog timeouts to seamlessly switch to Instant Web Audio fallback (daakbaksher-gaan.m4a)", "Continuous default song playback with only Mute/Unmute (#btn-mute-toggle, #btn-dock-mute) and Play from Beginning 0:00 (#btn-restart-song, #btn-dock-restart) options and zero Stop/Pause controls"], "Y_bug_fixes": ["Prevented dual-audio track overlap by keeping Instant Web Audio fallback silenced while YouTube Music primary loop is active", "Added transparent click-shield over embedded YouTube surface and pause-interception guard on fallback Web Audio so playback can never be stopped"], "Z_additional": ["Added v3.0.0 Leaderboard version filter pill and updated version_manifest.json across all 14 deployment targets"]}, {"version": "v2.0.0", "date": "2026-10-31", "summary": "5 automatic wind levels (5->15->25->50->125 words), live HUD & certificate timer, official Leaderboard with version/level/timing tags, and Completeness telemetry.", "X_feature_additions": ["5-level automatic progression system (5 -> 15 -> 25 -> 50 -> 125 target words) with automatic windspeed scaling (1.0x -> 1.35x -> 1.75x -> 2.20x -> 2.75x) and zero manual controls", "Live high-precision game timer (#hud-timer, MM:SS.d) displayed in HUD and stamped on the 9:16 Story Certificate", "Leaderboard system (#leaderboard-modal & /api/game-leaderboard) with version winner tags, timing tags, and level info tags", "Mandatory semantic game versioning (vX.Y.Z) enforced at build time and displayed across HUD, 9:16 Certificate, Leaderboard, and server telemetry"], "Y_bug_fixes": ["Unified all progress UI and certificate wording around Complete / Completeness", "Cleaned up track metadata badges across game HUD, player dock, 9:16 certificate canvas, and arcade hub", "Enforced level-completion gate on advanceToNextLevel() and certificate issuance so levels and wind speeds cannot be manually skipped", "Added visibilitychange timer pause/resume lifecycle and fresh elapsed-time snapshot on final word drop", "Unified Leaderboard ranking comparator (Level DESC, Score DESC, Fastest Time ASC, Timestamp ASC, CertID ASC) and HTML-escaped player fields"], "Z_additional": ["Added level-advance workflow in completion modal and seeded canonical leaderboard winners across versions"]}, {"version": "v1.0.0", "date": "2026-10-31", "summary": "Initial 2D Sumi-e wind game with 125 canonical song words, 250 decoy words, Bengali <-> Roman toggle, and 9:16 certificate.", "X_feature_additions": ["Initial 2D Sumi-e wind game with 125 canonical song words and 250 decoy words", "Bengali <-> Roman Bengali live script toggle and 9:16 listener certificate with multi-platform social handle validation"], "Y_bug_fixes": [], "Z_additional": []}];
+    const GAME_VERSION = "v8.1.0";
+    const GAME_VERSION_CHANGELOG = [{"version": "v8.1.0", "date": "2026-11-28", "summary": "Seamless auto-advance progression (Levels 1-4) with zero streaming words at 100%, Grand Finale Level 5 completion hub with certificate/games/songs CTAs, and Admin-only Leaderboard versioning history & filters.", "X_feature_additions": ["Automatic Level 1-4 Progression Overlay (#level-advance-overlay): Brief 3-second countdown card with live progress bar, Next Level Now button, and optional Claim Certificate shortcut — advances automatically even when logged out or offline", "Level 5 Grand Finale Victory Screen (#grand-finale-overlay): Celebrates full game completion with Login/Download 9:16 Certificate CTA, cross-links to Taar Kata Ektara & All #ABHIKISM Games, Listen to #ABHIKISM Songs, and Replay", "Admin-Only Versioning History & Filters: Restricts #version-changelog-box and #lb-version-filters strictly to authenticated @admin sessions while retaining compact version tags on leaderboard rows for all members"], "Y_bug_fixes": ["Eliminated stuck 100% postbox state with words still streaming on mobile and desktop by immediately clearing and pausing the wind word layer via clearAndPauseWindField() at 100% completeness", "Auto-advances cleanly into Level X+1 when closing Certificate or Leaderboard modals after completing Levels 1-4, and repopulates fresh floating words on level start"], "Z_additional": ["Added v8.1.0 admin version filter pill and preserved multi-game games.abhikism.com Hub & sitemap generation across all live games in games_registry.json"]}, {"version": "v8.0.0", "date": "2026-11-13", "summary": "Upgraded to the Unified Multi-Game #ABHIKISM Arcade Hub & Cross-Game Leaderboard architecture (Schema 3.0) with live-only game discovery switchers across the in-game Leaderboard modal and games.abhikism.com, consolidated multi-game telemetry, and hardened public read endpoints.", "X_feature_additions": ["Cross-Game Leaderboard Switcher (#lb-game-switcher-bar): Switch between live playable #ABHIKISM games directly inside the Leaderboard modal and launch any selected game or listen to its song", "Unified Games Arcade Hub Leaderboard (#arcade-unified-leaderboard-section): Authenticated cross-game leaderboard viewer on games.abhikism.com powered by shared registry and live cloud synchronization", "Multi-Game Telemetry Routing (Schema 3.0): Every Step 1, download, and Step 2 payload carries canonical game_id, game_title, song_id, and category metadata across local storage, DashboardServer, and Google Apps Script", "Hardened Public Read Endpoint: Cloud directory and leaderboard feeds expose only live games and strip private certificate IDs and Step 2 personal contact fields"], "Y_bug_fixes": ["Deduplicated localhost vs browser direct-webhook relays using server_relayed_webhook guards while preventing synthetic autotest IDs from reaching live cloud endpoints"], "Z_additional": ["Added v8.0.0 Leaderboard version filter pill and DBG-V80-SEED-L5 benchmark entry synchronized across version_manifest.json, games_registry.json, and all deployment mirrors"]}, {"version": "v7.1.0", "date": "2026-11-04", "summary": "Restored authentic Saul Bass linocut crimson postbox base silhouette matching official poster, fixed dark-mode contrast across HUD pills, Auth gates, Leaderboard rows, Lexicon chips, and mobile breakpoints, and aligned games.abhikism.com Arcade Hub with the Saul Bass noir aesthetic.", "X_feature_additions": [], "Y_bug_fixes": ["Fixed postbox 0% base color override in updateScoreAndPostboxCompleteness() so the Victorian pillar box renders in shadowed Saul Bass woodcut crimson (#8E181E -> #C7242B) with linocut black plinth/collar instead of legacy stone-beige", "Fixed white-on-cream contrast regressions on .back-songs-link, .modal-close-btn, .lb-rank-badge, .lb-tag-level, .lb-tag-score, and logged-in @username badges", "Replaced legacy light card backgrounds (#FFFFFF / #F4FBF9 / #FAF7F2) in Leaderboard rows, Auth gates, Social input rows, Lexicon chips, and mobile instruction banner with high-contrast Saul Bass noir surfaces", "Removed redundant outer mobile padding on .floating-word-slip so bilingual text stays centered beneath the origami envelope fold flap"], "Z_additional": ["Upgraded games.abhikism.com Arcade Hub to match the Saul Bass constructivist noir identity with High-Contrast toggle and v7.1.0 version filter pill"]}, {"version": "v7.0.0", "date": "2026-11-04", "summary": "Full Saul Bass constructivist linocut visual redesign matching official poster (Option 3), pure dark mode palette with high-contrast toggle, proportional responsive physics engine, angular papercut wave horizon, and Option 1 origami folded envelope word slips with unified bilingual typography.", "X_feature_additions": ["Saul Bass Constructivist Redesign: Complete visual overhaul matching official poster (ABHIKISM_VISUAL_PosterOpt3DaakBaksherGaanSaulBass_v2.0_20261013_FINAL.jpg) featuring inky void black (#0E0F12), Saul Bass crimson (#C7242B), aged woodblock cream (#F5EFE1), and warm ochre (#E5CF98)", "Linocut Victorian Pillar Postbox: Authentic Saul Bass silhouette with faceted dome cap, dentil trim collar, cream contour linocut outline (#F5EFE1), glowing letter cavity, and center enamel plaque", "Angular Horizon Waves: Multi-layered constructivist papercut wave silhouettes (#E5CF98 ochre, #C7242B crimson, and #0E0F12 inky silhouette with cream crest trim) anchoring the stage baseline", "Origami Folded Envelopes: Option 1 geometric folded cream paper slips with triangular fold flap, diagonal creases, and crimson corner fold accent", "Unified Bilingual Typography: Identical layout for both song words and decoy words (bold Bengali script + uppercase English romanization, zero decoy labeling)", "Saul Bass Dark Mode & High-Contrast Toggle: Permanent dark aesthetic with one-click toggle (#btn-theme-toggle) between Classic Saul Bass Noir and High-Contrast Graphic Noir"], "Y_bug_fixes": ["Eliminated awkward window resize jumping by removing abrupt (entity.x / prevW) * stageWidth coordinate recalculations and transitioning to smooth normalized vertical lane distribution (laneRatio)", "Implemented proportional postbox scaling using CSS clamp() (clamp(140px, 16vw, 195px)) to prevent collision with top HUD on small viewports", "Removed redundant single-script romanisation toggle button in favor of unified bilingual origami envelopes"], "Z_additional": ["Added v7.0.0 Leaderboard version filter pill, updated version badges across HUD and certificate canvas, and comprehensive test suite validation for v7.0.0"]}, {"version": "v6.1.0", "date": "2026-11-04", "summary": "Fixed broken canonical streaming links (verified Spotify track 5ZrfaZ8vM5pXGJaee4NKW1 & YouTube Music track mPZvSvhKr88) and eliminated mobile tab reload/crash triggers (throttled 60 FPS postMessage IPC to 250ms interval, removed top-navigation sandbox vulnerability, and removed getElementById monkey-patching).", "X_feature_additions": [], "Y_bug_fixes": ["Replaced placeholder/search DSP links with verified canonical URLs: Spotify (5ZrfaZ8vM5pXGJaee4NKW1), YouTube Music (mPZvSvhKr88), and YouTube Video (mPZvSvhKr88) across game dock, embed tray, and onelink discography", "Eliminated 60 FPS postMessage IPC flooding in requestAnimationFrame by moving syncYouTubeTelemetryTick to a throttled 250ms interval active only during YouTube playback", "Removed allow-top-navigation-by-user-activation sandbox permission from Apple Music embed iframe to prevent accidental top-level mobile page navigation and reloads", "Removed global document.getElementById monkey-patching to restore native DOM lookup performance in mobile WebKit/Blink"], "Z_additional": ["Added v6.1.0 Leaderboard version filter pill and updated all test suite assertions to v6.1.0 with canonical DSP track verification"]}, {"version": "v6.0.0", "date": "2026-11-03", "summary": "Level-based wrong word penalty progression (0%, 20%, 100%, 200%, 500%), time-scaled speed scoring (round((Raw Score / Seconds) * 100)), tightened authentic Hanko fingerprint seal, wax dot mark removal from envelope slips, username placeholder cleanup, authenticated-only version registry, and arcade portal launch for games.abhikism.com.", "X_feature_additions": ["Level-based wrong word penalties: Level 1 (0%), Level 2 (20% = 20 pts), Level 3 (100% = 100 pts), Level 4 (200% = 200 pts), Level 5 (500% = 500 pts)", "Arcade Speed Index scoring: Final Score = round((Raw Score / Elapsed Seconds) * 100), massively rewarding fast completions", "Launched games.abhikism.com Arcade Hub featuring Daakbaksher Gaan as the featured #1 game with level badges and direct play link"], "Y_bug_fixes": ["Tightened authentic Hanko double square frame (156px) around the #ABHIKISM fingerprint seal on the 9:16 certificate", "Removed wax seal dot mark from floating word envelope flaps for clean vector paper folds", "Changed username input placeholder to 'e.g. username' (replacing 'e.g. abhik_listener')", "Gated Semantic Versioning Registry so it is only visible to logged-in users inside the Leaderboard modal"], "Z_additional": ["Added v6.0.0 Leaderboard version filter pill and comprehensive automated test suite coverage for penalty progression and speed scoring"]}, {"version": "v5.0.0", "date": "2026-11-02", "summary": "UI refinements for Daakbaksher Gaan (postbox plaque cleaned up with centered percentage indicator, envelope-shaped floating word slips with postal flap styling), user self-service data viewing and soft-deletion portal (user.abhikism.com), and privacy hardening.", "X_feature_additions": ["Official #ABHIKISM fingerprint Hanko seal stamped on 9:16 Certificate of Authenticity", "User self-service data viewing and soft-deletion portal deployed at user.abhikism.com with active view filtering", "Envelope-shaped floating word slips with postal flap styling and WCAG touch compliance"], "Y_bug_fixes": ["Postbox plaque cleaned up: removed 'abhikism' and 'daakbaksho' text, centered completion percentage indicator"], "Z_additional": ["Added v5.0.0 Leaderboard version filter pill and extended 9-test automated test suite"]}, {"version": "v4.1.0", "date": "2026-11-01", "summary": "Fixed 0% completeness certificate bug by removing the 0 || targetWords fallback and strictly gating the 9:16 certificate preview, issue button, download button, and HUD certificate button behind 100% postbox completeness.", "X_feature_additions": [], "Y_bug_fixes": ["Fixed 0% completeness bug where 0 collected words fell back to targetWords (0 || 5 -> 5) and rendered a fake 100% Complete certificate preview", "Added syncCertificateCompletionGate() to hide the HUD 9:16 Certificate button (#btn-open-certificate), certificate canvas frame (.cert-canvas-frame), issue button (#btn-generate-cert), and download button (#btn-download-cert) whenever postbox completeness is below 100%", "Added locked certificate state card (#cert-incomplete-lock-card) in the modal when opened via Account Login at <100% completeness, and added hard guard in downloadCertificate9x16() and backend API against <100% completeness"], "Z_additional": ["Added v4.1.0 Leaderboard version filter pill and headless Chrome assertions for 0% vs 100% completeness certificate gating"]}, {"version": "v4.0.0", "date": "2026-11-01", "summary": "Added Username + Created Password Authentication gating social media profile links, voluntary personal info, and Leaderboard visibility; implemented mobile UI touch/viewport fixes (6-word compact density, 44px touch targets, single-row landscape dock) and Zero-Client-Exposure privacy hardening.", "X_feature_additions": ["Username + Created Password authentication system (registerUserAccount, loginUserAccount, submitUserAuth, logoutUserAccount) with salted SHA-256 / PBKDF2 password hashing", "Authenticated access gate for entering social media links (#cert-step1-box) and voluntary personal info (#cert-step2-voluntary-box) in the 9:16 Certificate modal", "Members-only Official Leaderboard gate (#leaderboard-auth-gate & /api/game-leaderboard) visible exclusively to logged-in users while displaying verified names and social profiles"], "Y_bug_fixes": ["Fixed mobile touch drag responsiveness with cached stage bounds, explicit releasePointerCapture, touch-action: none, and WCAG 44px touch targets", "Implemented Option A adaptive word density (6 concurrent words on compact mobile <=420px wide or <=480px tall, 10 on desktop/tablet) and clamped initial mobile spawn X inside visible bounds away from the postbox", "Fixed 844x390 landscape dock collision, 340x640 Completeness cell clipping, duplicate mobile HUD audio buttons, and repositioned #feedback-whisper to top of stage", "Remediated client bundle privacy by stripping all internal notification email addresses, third-party relay tokens, and cloud document IDs from client HTML/JS and API responses"], "Z_additional": ["Added v4.0.0 Leaderboard version filter pill, top HUD account status button (#btn-user-auth), and honeypot anti-spam protection"]}, {"version": "v3.1.0", "date": "2026-11-01", "summary": "Fixed backend notification links by binding canonical public URLs (https://songs.abhikism.com/daakbaksher-gaan/game/), blocking local loopback Referer leakage, and adding server-side relay synchronization.", "X_feature_additions": [], "Y_bug_fixes": ["Fixed broken local loopback link in notification dispatches by setting canonical game URLs (https://songs.abhikism.com/daakbaksher-gaan/game/) and blocking direct browser calls from 127.0.0.1/localhost/file:", "Added server-side authenticated notification relay and cloud sync so notifications arrive reliably"], "Z_additional": ["Added v3.1.0 Leaderboard version filter pill and clickable game_url / leaderboard_url links inside notification payloads"]}, {"version": "v3.0.0", "date": "2026-10-31", "summary": "YouTube Music embedded player looping by default with smart error detection fallback to Instant Web Audio, continuous autoplay by default, and exclusive Mute/Unmute + Play from Beginning (0:00) controls (zero Stop/Pause).", "X_feature_additions": ["YouTube Music embedded player (8K1B2qG3U7E) active and looping by default via YouTube IFrame API with automatic loop-on-end and auto-resume-on-pause enforcement", "Smart audio error detection (smartDetectAudioErrorAndFallback / window.triggerSmartAudioErrorFallback) detecting YT.Player onError events, iframe API script blocks, offline states, and watchdog timeouts to seamlessly switch to Instant Web Audio fallback (daakbaksher-gaan.m4a)", "Continuous default song playback with only Mute/Unmute (#btn-mute-toggle, #btn-dock-mute) and Play from Beginning 0:00 (#btn-restart-song, #btn-dock-restart) options and zero Stop/Pause controls"], "Y_bug_fixes": ["Prevented dual-audio track overlap by keeping Instant Web Audio fallback silenced while YouTube Music primary loop is active", "Added transparent click-shield over embedded YouTube surface and pause-interception guard on fallback Web Audio so playback can never be stopped"], "Z_additional": ["Added v3.0.0 Leaderboard version filter pill and updated version_manifest.json across all 14 deployment targets"]}, {"version": "v2.0.0", "date": "2026-10-31", "summary": "5 automatic wind levels (5->15->25->50->125 words), live HUD & certificate timer, official Leaderboard with version/level/timing tags, and Completeness telemetry.", "X_feature_additions": ["5-level automatic progression system (5 -> 15 -> 25 -> 50 -> 125 target words) with automatic windspeed scaling (1.0x -> 1.35x -> 1.75x -> 2.20x -> 2.75x) and zero manual controls", "Live high-precision game timer (#hud-timer, MM:SS.d) displayed in HUD and stamped on the 9:16 Story Certificate", "Leaderboard system (#leaderboard-modal & /api/game-leaderboard) with version winner tags, timing tags, and level info tags", "Mandatory semantic game versioning (vX.Y.Z) enforced at build time and displayed across HUD, 9:16 Certificate, Leaderboard, and server telemetry"], "Y_bug_fixes": ["Unified all progress UI and certificate wording around Complete / Completeness", "Cleaned up track metadata badges across game HUD, player dock, 9:16 certificate canvas, and arcade hub", "Enforced level-completion gate on advanceToNextLevel() and certificate issuance so levels and wind speeds cannot be manually skipped", "Added visibilitychange timer pause/resume lifecycle and fresh elapsed-time snapshot on final word drop", "Unified Leaderboard ranking comparator (Level DESC, Score DESC, Fastest Time ASC, Timestamp ASC, CertID ASC) and HTML-escaped player fields"], "Z_additional": ["Added level-advance workflow in completion modal and seeded canonical leaderboard winners across versions"]}, {"version": "v1.0.0", "date": "2026-10-31", "summary": "Initial 2D Sumi-e wind game with 125 canonical song words, 250 decoy words, Bengali <-> Roman toggle, and 9:16 certificate.", "X_feature_additions": ["Initial 2D Sumi-e wind game with 125 canonical song words and 250 decoy words", "Bengali <-> Roman Bengali live script toggle and 9:16 listener certificate with multi-platform social handle validation"], "Y_bug_fixes": [], "Z_additional": []}];
     const SEED_LEADERBOARD = [];
-    const GAMES_REGISTRY = [{"game_id": "daakbaksher-gaan", "game_title": "DaakBaksher Gaan: Letters in the Wind", "game_title_bn": "ডাকবাক্সের গান — বাতাসের চিঠি", "category": "song", "song_id": "daakbaksher-gaan", "song_title": "DaakBaksher Gaan", "catalog_code": "WKS-003", "status": "live", "leaderboard_tab": "DaakBaksherGaan-GameLeaderboard", "current_version": "v8.0.0", "play_url": "https://games.abhikism.com/daakbaksher-gaan/", "song_url": "https://songs.abhikism.com/daakbaksher-gaan/", "scoring_label": "Arcade Speed Index (PTS)", "updated_at": "2026-11-13"}, {"game_id": "aar-ektu-kheli", "game_title": "Aar Ektu Kheli", "game_title_bn": "আর একটু খেলি", "category": "song", "song_id": "aar-ektu-kheli", "song_title": "Aar Ektu Kheli", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Leaderboard_aar-ektu-kheli", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/aar-ektu-kheli/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "ami-raja", "game_title": "Ami Raja", "game_title_bn": "আমি রাজা", "category": "song", "song_id": "ami-raja", "song_title": "Ami Raja", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Leaderboard_ami-raja", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/ami-raja/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "hey-bhoboghurey", "game_title": "Hey Bhoboghurey", "game_title_bn": "হে ভবঘুরে", "category": "song", "song_id": "hey-bhoboghurey", "song_title": "Hey Bhoboghurey", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Leaderboard_hey-bhoboghurey", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/hey-bhoboghurey/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}];
+    const GAMES_REGISTRY = [{"game_id": "daakbaksher-gaan", "game_title": "DaakBaksher Gaan: Letters in the Wind", "game_title_bn": "ডাকবাক্সের গান — বাতাসের চিঠি", "category": "song", "song_id": "daakbaksher-gaan", "song_title": "DaakBaksher Gaan", "catalog_code": "WKS-003", "status": "live", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v8.1.0", "play_url": "https://games.abhikism.com/daakbaksher-gaan/", "song_url": "https://songs.abhikism.com/daakbaksher-gaan/", "scoring_label": "Arcade Speed Index (PTS)", "updated_at": "2026-11-28"}, {"game_id": "taar-kata-ektara", "game_title": "Taar Kata Ektara: Five Pre-Dawn Worlds", "game_title_bn": "তার কাটা একতারা — পাঁচ ভোরের জগৎ", "category": "song", "song_id": "taar-kata-ektara", "song_title": "Taar Kata Ektara", "catalog_code": "WKS-007", "status": "live", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.1.0", "play_url": "https://games.abhikism.com/taar-kata-ektara/", "song_url": "https://songs.abhikism.com/taar-kata-ektara/", "scoring_label": "Dawn Speed Index (PTS)", "updated_at": "2026-11-28"}, {"game_id": "aar-ektu-kheli", "game_title": "Aar Ektu Kheli", "game_title_bn": "আর একটু খেলি", "category": "song", "song_id": "aar-ektu-kheli", "song_title": "Aar Ektu Kheli", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/aar-ektu-kheli/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "ami-raja", "game_title": "Ami Raja", "game_title_bn": "আমি রাজা", "category": "song", "song_id": "ami-raja", "song_title": "Ami Raja", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/ami-raja/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "hey-bhoboghurey", "game_title": "Hey Bhoboghurey", "game_title_bn": "হে ভবঘুরে", "category": "song", "song_id": "hey-bhoboghurey", "song_title": "Hey Bhoboghurey", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/hey-bhoboghurey/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}];
     const DEFAULT_CLOUD_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwETZpwdI0c7xguhbsMv27F-86LKlXi9xnH4WtC1WLROeUCzqhV_2ONZtIrU0lXWA_1Xw/exec";
 
     // Embedded 375-word pool (125 unique words from DaakBaksher Gaan + 250 non-song decoy words)
@@ -2898,6 +3097,9 @@
       // User Authentication State (v4.0.0: Username + Created Password Gating Social Links, Personal Info & Leaderboard)
       isAuthenticated: false,
       loggedInUser: null,
+      userRole: 'member',
+      autoAdvanceTimerId: null,
+      autoAdvanceCountdownId: null,
       // Social & Certificate State
       selectedPlatform: 'Instagram',
       selectedPlatforms: ['Instagram'],
@@ -3319,6 +3521,7 @@
     }
 
     function spawnFloatingWord(initialX = null, laneRatio = null) {
+      if (gameState.isCompleted) return null;
       const wordObj = pickNextWordToSpawn();
       const el = document.createElement('div');
       el.className = 'floating-word-slip word-slip';
@@ -3386,6 +3589,14 @@
         spawnFloatingWord(startX, laneY);
       }
     }
+
+    // v8.1.0: Immediately halt & clear all streaming floating words the instant a level hits 100%
+    function clearAndPauseWindField() {
+      if (typeof releaseActiveDrag === 'function') releaseActiveDrag();
+      gameState.floatingEntities.length = 0;
+      if (wordsLayer) wordsLayer.innerHTML = '';
+    }
+    window.clearAndPauseWindField = clearAndPauseWindField;
 
     // ==============================================================
     // DRAG-AND-DROP & POSTBOX OPEN / SWALLOW / THROW-BACK MECHANICS
@@ -3547,8 +3758,10 @@
         showFeedbackWhisper(`📮 সঠিক! “${formatWordLabel(word)}” (+${pointsEarned}) — “${lyricLine}”`);
         document.getElementById('live-lyric-ticker').textContent = `🎵 “${word.line_bn || ''}” — ${word.line_roman || ''}`;
 
-        // Spawn replacement word in the wind
-        spawnFloatingWord();
+        // Spawn replacement word in the wind ONLY if the level is not yet 100% complete
+        if (!gameState.isCompleted) {
+          spawnFloatingWord();
+        }
       } else {
         // WRONG WORD (DECOY): Level-based penalty progression
         // Level 1: 0% penalty (0 pts)
@@ -3604,6 +3817,7 @@
           || GAME_WORD_POOL.decoy_words.find(w => w.id === wordId);
         if (!wObj) return false;
         entity = spawnFloatingWord(stageWidth * 0.5);
+        if (!entity) return false;
         entity.word = wObj;
       }
       setPostboxOpenState(true);
@@ -3755,6 +3969,9 @@
         gameState.completionTimeFormatted = formatElapsedTime(finalMs);
         syncLiveTimerHud();
 
+        // v8.1.0: Immediately halt & clear all streaming floating words so a 100% full postbox never has words flying past
+        clearAndPauseWindField();
+
         // Arcade Speed Index: round((Raw Score / Elapsed Seconds) * 100)
         const elapsedSec = Math.max(0.5, finalMs / 1000);
         gameState.rawWordScore = gameState.score;
@@ -3793,9 +4010,11 @@
 
         postboxContainer.setAttribute('data-complete', 'true');
         showFeedbackWhisper(`🎉 স্তর ${gameState.currentLevel}/5 সম্পূর্ণ! (Level ${gameState.currentLevel}/5 100% Complete in ${gameState.completionTimeFormatted}!)`);
-        setTimeout(() => {
-          openCompletionModal();
-        }, 450);
+        if (gameState.currentLevel < gameState.maxLevels) {
+          openLevelAdvanceOverlay();
+        } else {
+          openGrandFinaleOverlay();
+        }
       }
 
       if (typeof syncCertificateCompletionGate === 'function') {
@@ -3804,7 +4023,144 @@
     }
     window.updateScoreAndPostboxCompleteness = updateScoreAndPostboxCompleteness;
 
+    // ==============================================================
+    // v8.1.0 SEAMLESS AUTO-ADVANCE (LEVELS 1-4) & GRAND FINALE (LEVEL 5)
+    // ==============================================================
+    function cancelAutoAdvanceTimer() {
+      if (gameState.autoAdvanceTimerId) {
+        clearTimeout(gameState.autoAdvanceTimerId);
+        gameState.autoAdvanceTimerId = null;
+      }
+      if (gameState.autoAdvanceCountdownId) {
+        clearInterval(gameState.autoAdvanceCountdownId);
+        gameState.autoAdvanceCountdownId = null;
+      }
+    }
+    window.cancelAutoAdvanceTimer = cancelAutoAdvanceTimer;
+
+    function hideCelebrationOverlays() {
+      const adv = document.getElementById('level-advance-overlay');
+      const fin = document.getElementById('grand-finale-overlay');
+      if (adv) adv.classList.remove('open');
+      if (fin) fin.classList.remove('open');
+    }
+
+    function startLevelAutoAdvanceCountdown(durationMs = 3000) {
+      cancelAutoAdvanceTimer();
+      const totalMs = Math.max(200, Number(durationMs) || 3000);
+      const nextLvl = Math.min(gameState.maxLevels, gameState.currentLevel + 1);
+      const startedAt = performance.now();
+      const fillEl = document.getElementById('advance-countdown-fill');
+      const labelEl = document.getElementById('advance-countdown-label');
+      if (fillEl) fillEl.style.width = '100%';
+      if (labelEl) labelEl.textContent = `Advancing to Level ${nextLvl} in ${Math.ceil(totalMs / 1000)}s…`;
+
+      gameState.autoAdvanceCountdownId = setInterval(() => {
+        const remaining = Math.max(0, totalMs - (performance.now() - startedAt));
+        const pct = Math.max(0, Math.min(100, (remaining / totalMs) * 100));
+        if (fillEl) fillEl.style.width = `${pct.toFixed(1)}%`;
+        if (labelEl) labelEl.textContent = `Advancing to Level ${nextLvl} in ${Math.max(1, Math.ceil(remaining / 1000))}s…`;
+      }, 80);
+
+      gameState.autoAdvanceTimerId = setTimeout(() => {
+        cancelAutoAdvanceTimer();
+        if (gameState.isCompleted && gameState.currentLevel < gameState.maxLevels && !isAnyModalOpen()) {
+          advanceToNextLevel();
+        }
+      }, totalMs);
+    }
+    window.startLevelAutoAdvanceCountdown = startLevelAutoAdvanceCountdown;
+
+    function openLevelAdvanceOverlay() {
+      hideCelebrationOverlays();
+      const curLvl = gameState.currentLevel;
+      const nextCfg = GAME_LEVELS[Math.min(GAME_LEVELS.length - 1, curLvl)];
+      const eyeEl = document.getElementById('advance-overlay-eyebrow');
+      const titleEl = document.getElementById('advance-overlay-title');
+      const statsEl = document.getElementById('advance-overlay-stats');
+      const nextBtn = document.getElementById('btn-overlay-next-now');
+      const certBtn = document.getElementById('btn-overlay-claim-cert');
+      if (eyeEl) eyeEl.textContent = `⚡ LEVEL ${curLvl}/5 COMPLETE • 100% FULL`;
+      if (titleEl) titleEl.textContent = `📮 ডাকবাক্স সম্পূর্ণ! Level ${curLvl} Cleared`;
+      if (statsEl) {
+        statsEl.textContent = `Score: ${gameState.score.toLocaleString()} PTS • Time: ${gameState.completionTimeFormatted} • Next: Level ${nextCfg.level} (${nextCfg.targetWords} Words • ${nextCfg.windSpeed}x Wind)`;
+      }
+      if (nextBtn) nextBtn.textContent = `🌪️ Enter Level ${nextCfg.level} Now →`;
+      if (certBtn) certBtn.textContent = `📜 Claim Level ${curLvl} Certificate`;
+
+      const adv = document.getElementById('level-advance-overlay');
+      if (adv) adv.classList.add('open');
+
+      if (!IS_AUTOTEST_ENV) {
+        startLevelAutoAdvanceCountdown(3000);
+      } else {
+        const fillEl = document.getElementById('advance-countdown-fill');
+        const labelEl = document.getElementById('advance-countdown-label');
+        if (fillEl) fillEl.style.width = '100%';
+        if (labelEl) labelEl.textContent = `Advancing to Level ${nextCfg.level} in 3s…`;
+      }
+    }
+    window.openLevelAdvanceOverlay = openLevelAdvanceOverlay;
+
+    function openCertificateFromAdvanceOverlay() {
+      cancelAutoAdvanceTimer();
+      hideCelebrationOverlays();
+      openCompletionModal();
+    }
+    window.openCertificateFromAdvanceOverlay = openCertificateFromAdvanceOverlay;
+
+    function syncGrandFinaleAuthCTA() {
+      const btn = document.getElementById('btn-finale-cert-cta');
+      const hint = document.getElementById('finale-auth-hint');
+      const authed = (typeof isUserAuthenticated === 'function') && isUserAuthenticated();
+      if (btn) {
+        btn.textContent = authed
+          ? '📜 Claim & Download Your 9:16 Certificate'
+          : '🔐 Sign In to Download 9:16 Certificate';
+      }
+      if (hint) {
+        hint.textContent = authed
+          ? `Signed in as @${gameState.loggedInUser} — claim and download your official 9:16 Listener Certificate below, or try another #ABHIKISM game or song!`
+          : 'You finished the game! Sign in or create a free account to claim & download your official 9:16 Listener Certificate — or explore more #ABHIKISM games & songs below.';
+      }
+    }
+
+    function openGrandFinaleOverlay() {
+      cancelAutoAdvanceTimer();
+      hideCelebrationOverlays();
+      const statsEl = document.getElementById('finale-overlay-stats');
+      if (statsEl) {
+        statsEl.textContent = `All 125 Words Collected • Score: ${gameState.score.toLocaleString()} PTS • Time: ${gameState.completionTimeFormatted} • 2.75x Wind`;
+      }
+      syncGrandFinaleAuthCTA();
+      const fin = document.getElementById('grand-finale-overlay');
+      if (fin) fin.classList.add('open');
+    }
+    window.openGrandFinaleOverlay = openGrandFinaleOverlay;
+
+    function openCertificateFromGrandFinale() {
+      hideCelebrationOverlays();
+      openCompletionModal();
+    }
+    window.openCertificateFromGrandFinale = openCertificateFromGrandFinale;
+
+    function openLeaderboardFromGrandFinale() {
+      hideCelebrationOverlays();
+      openLeaderboardModal();
+    }
+    window.openLeaderboardFromGrandFinale = openLeaderboardFromGrandFinale;
+
+    function replayFromGrandFinale() {
+      cancelAutoAdvanceTimer();
+      hideCelebrationOverlays();
+      resetGame();
+      ensureGameLoopRunning();
+    }
+    window.replayFromGrandFinale = replayFromGrandFinale;
+
     function resetGame() {
+      cancelAutoAdvanceTimer();
+      hideCelebrationOverlays();
       gameState.currentLevel = 1;
       gameState.score = 0;
       gameState.rawWordScore = 0;
@@ -3846,6 +4202,8 @@
         showFeedbackWhisper(`⚠️ Complete Level ${gameState.currentLevel}/5 (${gameState.targetWords} words) first to unlock the next wind level!`);
         return false;
       }
+      cancelAutoAdvanceTimer();
+      hideCelebrationOverlays();
       if (gameState.currentLevel < gameState.maxLevels) {
         gameState.currentLevel += 1;
       } else {
@@ -3865,10 +4223,13 @@
         gameState.timerStartedAtMs = performance.now() - (gameState.elapsedMs || 0);
         gameState.timerRunning = true;
         gameState.timerPausedByVisibility = false;
+        populateInitialWindField();
       }
       updateScoreAndPostboxCompleteness();
-      closeCompletionModal();
+      document.getElementById('completion-modal')?.classList.remove('open');
+      document.getElementById('leaderboard-modal')?.classList.remove('open');
       resizeStage();
+      if (typeof ensureGameLoopRunning === 'function') ensureGameLoopRunning();
       showFeedbackWhisper(`🌪️ Level ${gameState.currentLevel}/5 Started! Target: ${gameState.targetWords} Words • Wind: ${gameState.windSpeedMultiplier}x`);
       return gameState.currentLevel;
     }
@@ -4656,6 +5017,15 @@
         renderWindCanvas(timeMs, canvasDt);
       }
 
+      // v8.1.0: Never animate or spawn streaming floating words while the postbox is 100% complete
+      if (gameState.isCompleted) {
+        if (gameState.floatingEntities.length > 0 || (wordsLayer && wordsLayer.children.length > 0)) {
+          clearAndPauseWindField();
+        }
+        rafHandleId = requestAnimationFrame(animateGameLoop);
+        return;
+      }
+
       const effectiveGust = Math.max(0.75, (1.0 + 0.35 * Math.sin(timeMs * 0.0009)) * gameState.windSpeedMultiplier);
 
       for (let i = gameState.floatingEntities.length - 1; i >= 0; i--) {
@@ -4793,6 +5163,16 @@
     }
     window.isUserAuthenticated = isUserAuthenticated;
 
+    function isAdminUser() {
+      return Boolean(
+        gameState.isAuthenticated &&
+        gameState.loggedInUser &&
+        (String(gameState.userRole || '').toLowerCase() === 'admin' ||
+         String(gameState.loggedInUser || '').trim().toLowerCase() === 'admin')
+      );
+    }
+    window.isAdminUser = isAdminUser;
+
     function isValidAuthEmail(rawEmail) {
       const e = String(rawEmail || '').trim().toLowerCase();
       return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e);
@@ -4817,14 +5197,20 @@
       return { valid: true, username: uname, userKey: uname.toLowerCase(), email, password: pwd };
     }
 
-    function setAuthenticatedSession(username, sessionToken, emailMasked = '') {
+    function setAuthenticatedSession(username, sessionToken, emailMasked = '', role = '') {
       const tok = sessionToken || `dbg_sess_${sha256HexSync(`${username}:${Date.now()}:${Math.random()}`).slice(0, 32)}`;
+      const cleanRole = String(role || '').trim().toLowerCase();
+      const resolvedRole = cleanRole === 'admin'
+        ? 'admin'
+        : (cleanRole ? cleanRole : (String(username || '').trim().toLowerCase() === 'admin' ? 'admin' : 'member'));
       gameState.isAuthenticated = true;
       gameState.loggedInUser = username;
+      gameState.userRole = resolvedRole;
       gameState.sessionToken = tok;
       try {
         localStorage.setItem('abhikism_dbg_active_session', JSON.stringify({
           username,
+          role: resolvedRole,
           email_masked: emailMasked || '',
           session_token: tok,
           authenticated_at: new Date().toISOString()
@@ -4898,7 +5284,7 @@
             return { ok: false, error: (cloud.data && (cloud.data.error || cloud.data.message)) || 'Registration failed.' };
           }
           const cTok = (cloud.data && cloud.data.session_token) ? cloud.data.session_token : sessionToken;
-          setAuthenticatedSession(cloud.data.username || check.username, cTok, cloud.data.email_masked || '');
+          setAuthenticatedSession(cloud.data.username || check.username, cTok, cloud.data.email_masked || '', cloud.data.role || 'member');
           return { ok: true, action: 'registered', username: cloud.data.username || check.username, session_token: cTok };
         }
       }
@@ -4918,7 +5304,7 @@
       };
       saveLocalRegisteredUsers(users);
       const finalToken = (srv.ok && srv.data && srv.data.session_token) ? srv.data.session_token : sessionToken;
-      setAuthenticatedSession(check.username, finalToken);
+      setAuthenticatedSession(check.username, finalToken, '', (srv.ok && srv.data && srv.data.role) || 'member');
       return { ok: true, action: 'registered', username: check.username, session_token: finalToken };
     }
     window.registerUserAccount = registerUserAccount;
@@ -4933,7 +5319,7 @@
       const srv = await syncServerAuth('login', check.username, check.password, sessionToken, check.email, updatesOptIn);
       if (srv.reachable && srv.ok && srv.data && (srv.data.ok || srv.data.status === 'SUCCESS')) {
         const finalToken = srv.data.session_token || sessionToken;
-        setAuthenticatedSession(srv.data.username || check.username, finalToken);
+        setAuthenticatedSession(srv.data.username || check.username, finalToken, srv.data.email_masked || '', srv.data.role || '');
         return { ok: true, action: 'logged_in', username: srv.data.username || check.username, session_token: finalToken };
       }
       if (srv.reachable && srv.data && (srv.data.error || srv.data.message)) {
@@ -4948,7 +5334,7 @@
             return { ok: false, error: (cloud.data && (cloud.data.error || cloud.data.message)) || 'Invalid username, email, or password.' };
           }
           const cTok = (cloud.data && cloud.data.session_token) ? cloud.data.session_token : sessionToken;
-          setAuthenticatedSession(cloud.data.username || check.username, cTok, cloud.data.email_masked || '');
+          setAuthenticatedSession(cloud.data.username || check.username, cTok, cloud.data.email_masked || '', cloud.data.role || 'member');
           return { ok: true, action: 'logged_in', username: cloud.data.username || check.username, session_token: cTok };
         }
       }
@@ -5011,7 +5397,7 @@
           const srv = await syncServerAuth('auto', check.username, check.password, sessionToken, check.email, updatesOptIn);
           if (srv.reachable && srv.ok && srv.data && (srv.data.ok || srv.data.status === 'SUCCESS')) {
             const finalToken = srv.data.session_token || sessionToken;
-            setAuthenticatedSession(srv.data.username || check.username, finalToken);
+            setAuthenticatedSession(srv.data.username || check.username, finalToken, srv.data.email_masked || '', srv.data.role || '');
             res = { ok: true, action: srv.data.action || 'logged_in', username: srv.data.username || check.username, session_token: finalToken };
           } else if (srv.reachable && !srv.ok && srv.data && (srv.data.error || srv.data.message)) {
             res = { ok: false, error: srv.data.error || srv.data.message };
@@ -5022,7 +5408,7 @@
                 res = { ok: false, error: (cloud.data && (cloud.data.error || cloud.data.message)) || 'Authentication failed.' };
               } else {
                 const cTok = (cloud.data && cloud.data.session_token) ? cloud.data.session_token : sessionToken;
-                setAuthenticatedSession(cloud.data.username || check.username, cTok, cloud.data.email_masked || '');
+                setAuthenticatedSession(cloud.data.username || check.username, cTok, cloud.data.email_masked || '', cloud.data.role || 'member');
                 res = { ok: true, action: cloud.data.action || 'logged_in', username: cloud.data.username || check.username, session_token: cTok };
               }
             } else {
@@ -5059,6 +5445,8 @@
       const prevToken = gameState.sessionToken;
       gameState.isAuthenticated = false;
       gameState.loggedInUser = null;
+      gameState.userRole = 'member';
+      gameState.leaderboardFilterVersion = 'all';
       gameState.sessionToken = '';
       try {
         localStorage.removeItem('abhikism_dbg_active_session');
@@ -5170,6 +5558,9 @@
       if (typeof syncCertificateCompletionGate === 'function') {
         syncCertificateCompletionGate();
       }
+      if (typeof syncGrandFinaleAuthCTA === 'function') {
+        syncGrandFinaleAuthCTA();
+      }
       renderLeaderboard();
       if (authed) {
         fetchServerLeaderboard();
@@ -5203,6 +5594,7 @@
         // Start autotest in clean unauthenticated state so auth-gate tests can verify locked -> unlocked transitions
         gameState.isAuthenticated = false;
         gameState.loggedInUser = null;
+        gameState.userRole = 'member';
         gameState.sessionToken = '';
         syncAuthUIState();
         return;
@@ -5215,6 +5607,10 @@
           if (parsed && parsed.username && parsed.session_token) {
             gameState.isAuthenticated = true;
             gameState.loggedInUser = parsed.username;
+            const pRole = String(parsed.role || '').trim().toLowerCase();
+            gameState.userRole = pRole === 'admin'
+              ? 'admin'
+              : (pRole ? pRole : (String(parsed.username || '').trim().toLowerCase() === 'admin' ? 'admin' : 'member'));
             gameState.sessionToken = parsed.session_token;
             restored = true;
           }
@@ -5223,6 +5619,7 @@
       if (!restored) {
         gameState.isAuthenticated = false;
         gameState.loggedInUser = null;
+        gameState.userRole = 'member';
         gameState.sessionToken = '';
       }
       syncAuthUIState();
@@ -5639,6 +6036,8 @@
     }
 
     function openCompletionModal() {
+      cancelAutoAdvanceTimer();
+      hideCelebrationOverlays();
       updateCompletionLevelBanner();
       const volName = (document.getElementById('voluntary-name')?.value || '').trim();
       refreshCombinedSocialSummary();
@@ -5669,8 +6068,18 @@
       document.getElementById('completion-modal').classList.add('open');
     }
 
-    function closeCompletionModal() {
+    function closeCompletionModal(forceAutoAdvance = false) {
       document.getElementById('completion-modal').classList.remove('open');
+      if (gameState.isCompleted && !isAnyModalOpen()) {
+        if (gameState.currentLevel < gameState.maxLevels) {
+          if (!IS_AUTOTEST_ENV || forceAutoAdvance === true) {
+            advanceToNextLevel();
+            return;
+          }
+        } else {
+          openGrandFinaleOverlay();
+        }
+      }
       if (typeof ensureGameLoopRunning === 'function') ensureGameLoopRunning();
     }
 
@@ -6795,6 +7204,11 @@
           btn.classList.toggle('active', btn.getAttribute('data-lb-level') === String(value));
         });
       } else if (filterType === 'version') {
+        if (!isAdminUser()) {
+          gameState.leaderboardFilterVersion = 'all';
+          renderLeaderboard();
+          return;
+        }
         gameState.leaderboardFilterVersion = String(value);
         document.querySelectorAll('#lb-version-filters .lb-filter-btn').forEach(btn => {
           btn.classList.toggle('active', btn.getAttribute('data-lb-version') === String(value));
@@ -6854,8 +7268,16 @@
     }
 
     function renderLeaderboard() {
+      const adminVisible = isAdminUser();
+      const verFiltersEl = document.getElementById('lb-version-filters');
+      const changelogBoxEl = document.getElementById('version-changelog-box');
       const changelogEl = document.getElementById('version-changelog-list');
-      if (changelogEl && Array.isArray(GAME_VERSION_CHANGELOG)) {
+      if (verFiltersEl) verFiltersEl.style.display = adminVisible ? 'flex' : 'none';
+      if (changelogBoxEl) changelogBoxEl.style.display = adminVisible ? 'block' : 'none';
+      if (!adminVisible) {
+        gameState.leaderboardFilterVersion = 'all';
+        if (changelogEl) changelogEl.innerHTML = '';
+      } else if (changelogEl && Array.isArray(GAME_VERSION_CHANGELOG)) {
         changelogEl.innerHTML = GAME_VERSION_CHANGELOG.map(c =>
           `<div style="margin-bottom:3px;"><code>${escapeHtml(c.version)}</code> (${escapeHtml(c.date)}): ${escapeHtml(c.summary)}</div>`
         ).join('');
@@ -6891,7 +7313,7 @@
         ? allEntries
         : getMergedLeaderboardEntries(CURRENT_GAME_ID);
       const lvlFilter = gameState.leaderboardFilterLevel || 'all';
-      const verFilter = gameState.leaderboardFilterVersion || 'all';
+      const verFilter = adminVisible ? (gameState.leaderboardFilterVersion || 'all') : 'all';
 
       const filtered = allEntries.filter(e => {
         const matchLvl = (lvlFilter === 'all') || (String(e.level) === String(lvlFilter));
@@ -6921,6 +7343,8 @@
     window.renderLeaderboard = renderLeaderboard;
 
     function openLeaderboardModal() {
+      cancelAutoAdvanceTimer();
+      hideCelebrationOverlays();
       const compModal = document.getElementById('completion-modal');
       if (compModal) compModal.classList.remove('open');
       renderLeaderboard();
@@ -6931,8 +7355,18 @@
     }
     window.openLeaderboardModal = openLeaderboardModal;
 
-    function closeLeaderboardModal() {
+    function closeLeaderboardModal(forceAutoAdvance = false) {
       document.getElementById('leaderboard-modal').classList.remove('open');
+      if (gameState.isCompleted && !isAnyModalOpen()) {
+        if (gameState.currentLevel < gameState.maxLevels) {
+          if (!IS_AUTOTEST_ENV || forceAutoAdvance === true) {
+            advanceToNextLevel();
+            return;
+          }
+        } else {
+          openGrandFinaleOverlay();
+        }
+      }
       if (typeof ensureGameLoopRunning === 'function') ensureGameLoopRunning();
     }
     window.closeLeaderboardModal = closeLeaderboardModal;
@@ -7222,6 +7656,14 @@
               window.dropWordIntoPostboxById('SW-' + String(i).padStart(3, '0'));
             }
             const level1Completed = (gameState.isCompleted === true && gameState.completenessPct === 100);
+            const zeroStreamingWordsAt100 = (
+              gameState.floatingEntities.length === 0 &&
+              document.querySelectorAll('#words-layer .floating-word-slip').length === 0 &&
+              spawnFloatingWord() === null
+            );
+            const levelAdvanceOverlayVerified = (
+              document.getElementById('level-advance-overlay')?.classList.contains('open') === true
+            );
             const level1CertUnlocked = (
               level1Completed &&
               document.getElementById('btn-open-certificate')?.style.display !== 'none' &&
@@ -7235,8 +7677,15 @@
               document.getElementById('cert-canvas-9x16')?.getAttribute('data-cert-words') === '5'
             );
 
-            // Advance to Level 2 (15 words, 1.35x wind) and complete all 15 words
-            advanceToNextLevel();
+            // v8.1.0: Verify closing Completion modal while logged out on L1 automatically advances to L2 & repopulates wind slips
+            openCertificateFromAdvanceOverlay();
+            closeCompletionModal(true);
+            const autoAdvanceOnCloseVerified = (
+              gameState.currentLevel === 2 &&
+              gameState.isCompleted === false &&
+              gameState.floatingEntities.length > 0 &&
+              document.getElementById('level-advance-overlay')?.classList.contains('open') === false
+            );
             levelTargetsVerified.push(gameState.targetWords);
             levelWindsVerified.push(gameState.windSpeedMultiplier);
             for (let i = 6; i <= 15; i++) {
@@ -7268,12 +7717,24 @@
             levelWindsVerified.push(gameState.windSpeedMultiplier);
             window.instantCompleteRound();
             const level5Completed = (gameState.isCompleted === true && gameState.completenessPct === 100 && gameState.collectedWordIds.size === 125);
+            const grandFinaleVerified = (
+              document.getElementById('grand-finale-overlay')?.classList.contains('open') === true &&
+              document.getElementById('level-advance-overlay')?.classList.contains('open') === false &&
+              gameState.floatingEntities.length === 0 &&
+              Boolean(document.getElementById('link-finale-tke')) &&
+              Boolean(document.getElementById('link-finale-all-games')) &&
+              Boolean(document.getElementById('link-finale-songs'))
+            );
             const allFiveLevelsProgressedOk = (
               level1Completed &&
               level2Completed &&
               level3Completed &&
               level4Completed &&
               level5Completed &&
+              zeroStreamingWordsAt100 &&
+              levelAdvanceOverlayVerified &&
+              autoAdvanceOnCloseVerified &&
+              grandFinaleVerified &&
               JSON.stringify(levelTargetsVerified) === JSON.stringify([5, 15, 25, 50, 125]) &&
               JSON.stringify(levelWindsVerified) === JSON.stringify([1.0, 1.35, 1.75, 2.2, 2.75])
             );
@@ -7529,13 +7990,31 @@
               xssRowHtml.includes('&lt;img')
             );
 
-            // Test Leaderboard modal rendering & version/winner/time tags (while logged in)
+            // Test Leaderboard modal rendering & version/winner/time tags + Admin-Only Versioning History Gate
             openLeaderboardModal();
             const lbRowsCount = document.querySelectorAll('#leaderboard-list .leaderboard-row').length;
             const lbWinnersCount = document.querySelectorAll('#leaderboard-list .leaderboard-row.winner-row').length;
             const lbHasVersionTags = document.querySelectorAll('#leaderboard-list .lb-tag-version').length > 0;
             const lbHasTimeTags = document.querySelectorAll('#leaderboard-list .lb-tag-time').length > 0;
             const lbHasLevelTags = document.querySelectorAll('#leaderboard-list .lb-tag-level').length > 0;
+            const nonAdminVersioningHidden = (
+              isAdminUser() === false &&
+              document.getElementById('lb-version-filters')?.style.display === 'none' &&
+              document.getElementById('version-changelog-box')?.style.display === 'none' &&
+              (document.getElementById('version-changelog-list')?.innerHTML || '').trim() === ''
+            );
+            // Verify @admin session DOES see version filters & changelog, then restore testUser
+            const prevUser = gameState.loggedInUser;
+            const prevTok = gameState.sessionToken;
+            setAuthenticatedSession('admin', 'dbg_sess_admin_qa', '', 'admin');
+            const adminVersioningVisible = (
+              isAdminUser() === true &&
+              document.getElementById('lb-version-filters')?.style.display === 'flex' &&
+              document.getElementById('version-changelog-box')?.style.display === 'block' &&
+              (document.getElementById('version-changelog-list')?.innerHTML || '').includes(GAME_VERSION)
+            );
+            setAuthenticatedSession(prevUser, prevTok, '', 'member');
+            const adminOnlyVersioningVerified = (nonAdminVersioningHidden && adminVersioningVisible && lbHasVersionTags);
             closeLeaderboardModal();
             const leaderboardVerified = (
               lbRowsCount >= 1 &&
@@ -7543,6 +8022,7 @@
               lbHasVersionTags &&
               lbHasTimeTags &&
               lbHasLevelTags &&
+              adminOnlyVersioningVerified &&
               xssEscapedInLeaderboard
             );
 
@@ -7723,6 +8203,11 @@
               allEmailsToAdmin,
               emailStagesSent,
               leaderboardVerified,
+              adminOnlyVersioningVerified,
+              zeroStreamingWordsAt100,
+              levelAdvanceOverlayVerified,
+              autoAdvanceOnCloseVerified,
+              grandFinaleVerified,
               xssEscapedInLeaderboard,
               lbRowsCount,
               lbWinnersCount,
