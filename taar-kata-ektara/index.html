@@ -177,6 +177,25 @@
     .pill-btn:hover { background: rgba(226, 190, 116, 0.20); border-color: var(--gold); }
     .pill-btn.gold { background: var(--gold); color: var(--noir); border-color: var(--gold); }
     .pill-btn.crimson { background: var(--crimson); color: var(--ivory); border-color: var(--gold); }
+    .pill-btn.fb-expand { display: inline-flex; align-items: center; gap: 4px; border-color: var(--gold); color: var(--gold); }
+    .pill-btn.fb-expand .fb-extra {
+      display: inline-block; max-width: 0; opacity: 0; overflow: hidden; vertical-align: bottom;
+      transition: max-width 0.30s ease, opacity 0.22s ease, margin-left 0.25s ease; margin-left: 0;
+    }
+    @media (hover: hover) and (min-width: 720px) {
+      .pill-btn.fb-expand:hover .fb-extra,
+      .pill-btn.fb-expand:focus-visible .fb-extra { max-width: 270px; opacity: 1; margin-left: 4px; }
+    }
+    .fb-cat-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .fb-cat-pill {
+      font-family: var(--editorial); font-size: 13px; font-weight: 600; padding: 6px 12px;
+      background: rgba(255,255,255,0.05); color: var(--ivory); border: 1px solid rgba(226,190,116,0.35); cursor: pointer;
+    }
+    .fb-cat-pill.active { background: var(--crimson); color: var(--ivory); border-color: var(--gold); }
+    .fb-meta-strip {
+      font-size: 12px; color: var(--gold); background: rgba(226,190,116,0.08);
+      border: 1px solid rgba(226,190,116,0.35); padding: 7px 10px; margin-bottom: 12px;
+    }
     .controls-hint {
       font-size: 12px; font-style: italic; color: rgba(250, 243, 230, 0.70);
       text-shadow: 0 1px 8px rgba(0,0,0,0.88); pointer-events: none; text-align: center;
@@ -429,7 +448,7 @@
 
   <!-- Vogue Paris Opening Cover -->
   <section id="coverOverlay">
-    <div class="cover-issue">#ABHIKISM · ÉDITION INTERACTIVE N° 02 · V1.1.0</div>
+    <div class="cover-issue">#ABHIKISM · ÉDITION INTERACTIVE N° 02 · V1.2.0</div>
     <h1 class="cover-title">TAAR KATA EKTARA</h1>
     <div class="cover-bn">তার কাটা একতারা</div>
     <p class="cover-desc">
@@ -571,6 +590,7 @@
     </div>
     <div class="controls-hint" id="controlsHint">WASD Move · Mouse Free-Look + Arrows · Click/Tap Word · Hold SPACE 10× Speed · ESC Cursor</div>
     <div class="dock-group">
+      <button type="button" class="pill-btn fb-expand" id="btnFeedback" onclick="openFeedbackModal()" title="Add Feedback, Report Bugs &amp; Suggest Improvements">💬 <span>Feedback</span><span class="fb-extra">· Report Bugs &amp; Suggest Improvements</span></button>
       <button type="button" class="pill-btn" onclick="openLeaderboardModal()">Leaderboard</button>
       <button type="button" class="pill-btn gold" id="btnCertDock" onclick="openCertModal()">9:16 Certificate</button>
     </div>
@@ -637,8 +657,8 @@
       </div>
       <div id="lbContentPane">
         <div class="lb-switcher" id="lbGameSwitcher">
-          <button type="button" class="lb-tab-btn active" data-gid="taar-kata-ektara" onclick="switchLeaderboardGame('taar-kata-ektara')">Taar Kata Ektara (v1.1.0)</button>
-          <button type="button" class="lb-tab-btn" data-gid="daakbaksher-gaan" onclick="switchLeaderboardGame('daakbaksher-gaan')">DaakBaksher Gaan (v8.1.0)</button>
+          <button type="button" class="lb-tab-btn active" data-gid="taar-kata-ektara" onclick="switchLeaderboardGame('taar-kata-ektara')">Taar Kata Ektara (v1.2.0)</button>
+          <button type="button" class="lb-tab-btn" data-gid="daakbaksher-gaan" onclick="switchLeaderboardGame('daakbaksher-gaan')">DaakBaksher Gaan (v8.2.0)</button>
           <button type="button" class="pill-btn" style="margin-left:auto;" onclick="refreshLeaderboard()">↻ Refresh</button>
         </div>
         <!-- Admin-Only Version Filter Bar (Hidden from non-admin members) -->
@@ -751,6 +771,45 @@
         <button type="button" class="pill-btn gold" onclick="closeModal('lookbookModal')">Close</button>
       </div>
       <div class="lb-grid" id="lbGrid"></div>
+    </div>
+  </div>
+
+  <!-- Authenticated Feedback, Bug Report & Improvement Modal (v1.2.0) -->
+  <div class="modal-bg" id="feedbackModal">
+    <div class="modal-card narrow">
+      <div class="modal-head">
+        <div>
+          <div class="modal-eyebrow">#ABHIKISM STUDIO · SECURITY-SCREENED FEEDBACK</div>
+          <h2 class="modal-title">Feedback, Bugs &amp; Improvements</h2>
+        </div>
+        <button type="button" class="pill-btn" onclick="closeModal('feedbackModal')">Close</button>
+      </div>
+      <div id="fbAuthGate" style="display:none;text-align:center;padding:18px 8px;">
+        <p style="font-size:16px;margin-bottom:14px;">Please sign in with your #ABHIKISM account to share feedback, report bugs, or suggest improvements.</p>
+        <button type="button" class="cover-cta" id="btnFbSignIn" onclick="openAuthForFeedback()">Sign In / Create Account</button>
+      </div>
+      <div id="fbFormPane" style="display:none;">
+        <div class="fb-meta-strip" id="fbMetaStrip">User: @player · Taar Kata Ektara (v1.2.0) · Level 1/5</div>
+        <div class="fb-cat-row" id="fbCatRow">
+          <button type="button" class="fb-cat-pill active" data-fb-cat="feedback" onclick="selectFeedbackCategory('feedback')">💬 Feedback</button>
+          <button type="button" class="fb-cat-pill" data-fb-cat="bug" onclick="selectFeedbackCategory('bug')">🐞 Report Bug</button>
+          <button type="button" class="fb-cat-pill" data-fb-cat="improvement" onclick="selectFeedbackCategory('improvement')">✨ Improvement</button>
+        </div>
+        <div class="form-field">
+          <label for="fbMessageInput">Message (Plain text only · 6–1500 characters)</label>
+          <textarea id="fbMessageInput" rows="4" maxlength="1500" placeholder="Share feedback, describe a bug (world/device), or suggest an improvement…" oninput="document.getElementById('fbCharCount').textContent=this.value.length+' / 1500'"></textarea>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:rgba(250,243,230,0.65);margin:-4px 0 12px;">
+          <span>🛡️ Anti-injection screening active (no scripts/HTML/formulas)</span>
+          <span id="fbCharCount">0 / 1500</span>
+        </div>
+        <input type="text" id="fbHpCheck" style="position:absolute;left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button type="button" class="cover-cta" id="btnSubmitFeedback" onclick="submitPlayerFeedback()">Send Feedback</button>
+          <button type="button" class="pill-btn" onclick="closeModal('feedbackModal')">Cancel</button>
+        </div>
+        <div class="status-note" id="fbStatusMsg"></div>
+      </div>
     </div>
   </div>
 
@@ -2381,8 +2440,8 @@ window.VOGUE_ENGINE_ART = (function () {
     const CURRENT_GAME_TITLE_BN = "তার কাটা একতারা — পাঁচ ভোরের জগৎ";
     const CURRENT_SONG_ID = "taar-kata-ektara";
     const CURRENT_GAME_CATEGORY = "song";
-    const GAME_VERSION = "v1.1.0";
-    const GAME_VERSION_CHANGELOG = [{"version": "v1.1.0", "date": "2026-11-28", "summary": "Seamless auto-advance progression (Levels 1-4) with zero streaming words at 100% dawn, Level 5 Grand Finale completion screen with certificate/games/songs CTAs, and Admin-only Leaderboard versioning history & filters."}, {"version": "v1.0.0", "date": "2026-11-28", "summary": "Initial production launch of Taar Kata Ektara: Five Pre-Dawn Worlds with French Vogue Noir 2D-in-3D engine, 360° world-space backdrops, Level 5 Cocteau & Dalí mirror dreamscape, millisecond timer, and Unified_Games_Leaderboard v4.2 sync."}];
+    const GAME_VERSION = "v1.2.0";
+    const GAME_VERSION_CHANGELOG = [{"version": "v1.2.0", "date": "2026-11-28", "summary": "Added consistent hover-expanding Feedback button & security-hardened Bug/Improvement modal synced to User_Feedback_Bugs Google Sheet tab, private GitHub snapshot, and instant admin alert."}, {"version": "v1.1.0", "date": "2026-11-28", "summary": "Seamless auto-advance progression (Levels 1-4) with zero streaming words at 100% dawn, Level 5 Grand Finale completion screen with certificate/games/songs CTAs, and Admin-only Leaderboard versioning history & filters."}, {"version": "v1.0.0", "date": "2026-11-28", "summary": "Initial production launch of Taar Kata Ektara: Five Pre-Dawn Worlds with French Vogue Noir 2D-in-3D engine, 360° world-space backdrops, Level 5 Cocteau & Dalí mirror dreamscape, millisecond timer, and Unified_Games_Leaderboard v4.2 sync."}];
     const DEFAULT_CLOUD_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwETZpwdI0c7xguhbsMv27F-86LKlXi9xnH4WtC1WLROeUCzqhV_2ONZtIrU0lXWA_1Xw/exec";
     const SESSION_STORAGE_KEY = "abhikism_dbg_active_session";
     const IS_AUTOTEST_ENV = new URLSearchParams(window.location.search).get('autotest') === '1';
@@ -2625,7 +2684,7 @@ window.VOGUE_ENGINE_ART = (function () {
     });
 
     function anyModalOpen() {
-      return ['authModal', 'leaderboardModal', 'certModal', 'lookbookModal'].some(id =>
+      return ['authModal', 'leaderboardModal', 'certModal', 'lookbookModal', 'feedbackModal'].some(id =>
         document.getElementById(id).classList.contains('open')
       );
     }
@@ -3393,6 +3452,10 @@ window.VOGUE_ENGINE_ART = (function () {
           saveSession(data.username || uname, data.session_token || '', data.email_masked || '', data.role || 'member');
           msg.className = 'status-note ok';
           msg.textContent = `✓ Welcome, @${state.loggedInUser}!`;
+          if (state.pendingFeedbackAfterAuth) {
+            state.pendingFeedbackAfterAuth = false;
+            setTimeout(() => { closeModal('authModal', true); openFeedbackModal(); }, 300);
+          }
         } else {
           msg.className = 'status-note err';
           msg.textContent = (data && (data.error || data.message)) || 'Authentication failed.';
@@ -3968,6 +4031,116 @@ window.VOGUE_ENGINE_ART = (function () {
       document.getElementById('lookbookModal').classList.add('open');
     };
 
+    // =========================================================================
+    // AUTHENTICATED FEEDBACK, BUG REPORT & IMPROVEMENT ENGINE (v1.2.0)
+    // =========================================================================
+    state.selectedFeedbackCategory = 'feedback';
+    state.pendingFeedbackAfterAuth = false;
+
+    function scanFeedbackSecurityClient(rawText) {
+      const text = String(rawText ?? '');
+      if (/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F\u202A-\u202E\u2066-\u2069]/.test(text)) {
+        return { safe: false, code: 'CONTROL_CHARS', reason: 'Hidden control or invisible override characters are not allowed.' };
+      }
+      const trimmed = text.trim();
+      if (trimmed.length < 6) return { safe: false, code: 'TOO_SHORT', reason: 'Please write at least 6 characters.' };
+      if (trimmed.length > 1500) return { safe: false, code: 'TOO_LONG', reason: 'Message must be 1,500 characters or fewer.' };
+      const rules = [
+        { code: 'HTML_XSS', re: /<\s*\/?\s*(script|iframe|object|embed|svg|style|link|meta|form|input|img|video|audio|base|applet)\b/i, reason: 'HTML tags or embedded scripts are blocked for security.' },
+        { code: 'JS_URI', re: /\b(?:javascript|vbscript|livescript)\s*:|data\s*:\s*text\/html/i, reason: 'Executable URI schemes are blocked for security.' },
+        { code: 'DOM_EVENT', re: /\bon(?:click|dblclick|load|error|mouseover|mouseenter|focus|blur|submit|input|change|keydown|keyup)\s*=/i, reason: 'Inline script event handlers are blocked for security.' },
+        { code: 'JS_EXEC', re: /\b(?:eval|Function|setTimeout|setInterval|XMLHttpRequest|fetch|importScripts)\s*\(|\b(?:document\.cookie|document\.write|window\.location|localStorage|sessionStorage|__proto__|prototype\.constructor)\b/i, reason: 'Executable JavaScript or browser storage code is blocked for security.' },
+        { code: 'SHEET_FORMULA', re: /(?:^|\n)\s*[=+\-@]\s*(?:IMPORTHTML|IMPORTXML|IMPORTDATA|IMPORTRANGE|IMPORTFEED|WEBSERVICE|HYPERLINK|QUERY|CMD|EXEC|SYSTEM|SHELL|SUM|CONCATENATE|INDEX|MATCH)\s*\(/i, reason: 'Spreadsheet formula commands are blocked for security.' },
+        { code: 'LEADING_FORMULA', re: /^\s*=/, reason: 'Messages cannot start with "=" (spreadsheet formula protection).' },
+        { code: 'SQL_INJECTION', re: /\b(?:UNION\s+ALL\s+SELECT|UNION\s+SELECT|DROP\s+TABLE|DROP\s+DATABASE|DELETE\s+FROM|TRUNCATE\s+TABLE|INSERT\s+INTO|ALTER\s+TABLE|XP_CMDSHELL)\b|'\s*(?:OR|AND)\s*['"]?\d+['"]?\s*=\s*['"]?\d+/i, reason: 'SQL query patterns are blocked for security.' },
+        { code: 'SHELL_CODE_EXEC', re: /\b(?:rm\s+-rf|curl\s+https?:|wget\s+https?:|bash\s+-c|sh\s+-c|powershell\b|cmd\.exe|os\.system\s*\(|subprocess\.|require\s*\(\s*['"]child_process|process\.env\b|<\?php|\$\{[^}]{1,80}\}|\{\{[^}]{1,80}\}\})/i, reason: 'Shell commands, template expressions, or server code patterns are blocked for security.' },
+        { code: 'PROMPT_INJECTION', re: /\b(?:ignore\s+(?:all\s+)?(?:previous|prior|above)\s+instructions?|disregard\s+(?:all\s+)?(?:system|previous)\s+(?:prompt|instructions?)|reveal\s+(?:your\s+)?(?:system\s+prompt|api\s*key|admin_secret|secret|password|credentials|tokens?)|dump\s+(?:all\s+)?(?:users?|emails?|passwords?|database|sheet)|exfiltrate|bypass\s+auth(?:entication)?|override\s+security|jailbreak)\b/i, reason: 'System override or data-extraction instructions are blocked for security.' }
+      ];
+      for (const r of rules) {
+        if (r.re.test(trimmed)) return { safe: false, code: r.code, reason: r.reason };
+      }
+      return { safe: true, code: 'PASSED_CLIENT', cleaned: trimmed.replace(/[<>]/g, '') };
+    }
+
+    window.selectFeedbackCategory = function (cat) {
+      state.selectedFeedbackCategory = ['bug', 'improvement', 'feedback'].includes(cat) ? cat : 'feedback';
+      document.querySelectorAll('#fbCatRow .fb-cat-pill').forEach(b => b.classList.toggle('active', b.dataset.fbCat === state.selectedFeedbackCategory));
+    };
+    window.openFeedbackModal = function () {
+      pauseForOverlay();
+      const gate = document.getElementById('fbAuthGate'), form = document.getElementById('fbFormPane'), msg = document.getElementById('fbStatusMsg');
+      msg.className = 'status-note'; msg.textContent = '';
+      gate.style.display = state.isAuthenticated ? 'none' : 'block';
+      form.style.display = state.isAuthenticated ? 'block' : 'none';
+      if (state.isAuthenticated) {
+        const w = WORLDS[state.worldIdx];
+        const dev = `${window.innerWidth}×${window.innerHeight} · ${('ontouchstart' in window || window.innerWidth <= 768) ? 'Mobile' : 'Desktop'}`;
+        document.getElementById('fbMetaStrip').textContent = `User: @${state.loggedInUser} · Taar Kata Ektara (${GAME_VERSION}) · Level ${w.level}/5 (${w.nameEn}) · ${dev}`;
+      }
+      document.getElementById('feedbackModal').classList.add('open');
+    };
+    window.openAuthForFeedback = function () {
+      state.pendingFeedbackAfterAuth = true;
+      closeModal('feedbackModal', true);
+      openAuthModal();
+    };
+    window.submitPlayerFeedback = async function () {
+      const msg = document.getElementById('fbStatusMsg');
+      const inp = document.getElementById('fbMessageInput');
+      const btn = document.getElementById('btnSubmitFeedback');
+      msg.className = 'status-note';
+      if (!state.isAuthenticated) { openFeedbackModal(); return { ok: false, status: 'AUTH_REQUIRED' }; }
+      if (document.getElementById('fbHpCheck').value.trim()) return { ok: false, status: 'REJECTED_BOT' };
+      const sec = scanFeedbackSecurityClient(inp.value);
+      if (!sec.safe) {
+        msg.className = 'status-note err';
+        msg.textContent = `🛡️ Security Check Blocked: ${sec.reason}`;
+        return { ok: false, status: 'SECURITY_BLOCKED', code: sec.code };
+      }
+      if (IS_AUTOTEST_ENV) {
+        msg.className = 'status-note ok';
+        msg.textContent = '✓ Security check passed (dry-run mode).';
+        return { ok: true, status: 'SUCCESS', dry_run: true };
+      }
+      btn.disabled = true; btn.textContent = 'Checking & Sending…';
+      try {
+        const w = WORLDS[state.worldIdx];
+        const dev = `${window.innerWidth}x${window.innerHeight} | ${('ontouchstart' in window || window.innerWidth <= 768) ? 'Mobile' : 'Desktop'}`;
+        const res = await fetch(getWebhookUrl(), {
+          method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'submit_feedback',
+            session_token: state.sessionToken,
+            feedback_category: state.selectedFeedbackCategory || 'feedback',
+            message: sec.cleaned,
+            game_id: CURRENT_GAME_ID,
+            game_title: CURRENT_GAME_TITLE,
+            game_version: GAME_VERSION,
+            level: w.level,
+            device_info: dev,
+            source_origin: window.location.hostname || 'games.abhikism.com'
+          })
+        });
+        const data = await res.json().catch(() => null);
+        if (data && data.ok) {
+          inp.value = '';
+          document.getElementById('fbCharCount').textContent = '0 / 1500';
+          msg.className = 'status-note ok';
+          msg.textContent = `✓ ${data.message || 'Thank you — feedback sent to #ABHIKISM!'}`;
+          return { ok: true, data };
+        }
+        msg.className = 'status-note err';
+        msg.textContent = `🛡️ ${(data && data.message) || 'Could not submit feedback right now.'}`;
+        return { ok: false, data };
+      } catch (_) {
+        msg.className = 'status-note err';
+        msg.textContent = 'Unable to reach #ABHIKISM feedback service right now.';
+        return { ok: false };
+      } finally {
+        btn.disabled = false; btn.textContent = 'Send Feedback';
+      }
+    };
+
     window.enterWorld = function () {
       state.started = true;
       document.getElementById('coverOverlay').classList.add('hidden');
@@ -4013,7 +4186,8 @@ window.VOGUE_ENGINE_ART = (function () {
       clickAt: (x, y) => { render(); const h = hitTestScreen(x, y); return h ? { hit: true, selected: trySelectEntity(h, x, y) } : { hit: false }; },
       setTestAuth: (u, role) => { saveSession(u, 'tke_qa_tok', `${u}@example.com`, role); state.lbCachedRows = [{ rank: 1, player_name: '@abhik', username: 'abhik', level: 5, score: 4200, completion_time_formatted: '01:12.4', game_version: GAME_VERSION, social_handle: '@abhikism' }]; syncAdminLeaderboardUi(); renderLeaderboardRows(); },
       clearTestAuth: () => { state.isAuthenticated = false; state.loggedInUser = ''; state.userRole = 'member'; state.sessionToken = ''; try { localStorage.removeItem(SESSION_STORAGE_KEY); } catch (_) {} syncAuthUI(); },
-      completeCurrentWorld: () => { const w = WORLDS[state.worldIdx]; while (!state.levelCompleteOpen && state.entities.length > 0) { const e = state.entities.find(x => x.isSong); if (!e) break; handleCollect(e, window.innerWidth * 0.5, window.innerHeight * 0.5); } render(); }
+      completeCurrentWorld: () => { const w = WORLDS[state.worldIdx]; while (!state.levelCompleteOpen && state.entities.length > 0) { const e = state.entities.find(x => x.isSong); if (!e) break; handleCollect(e, window.innerWidth * 0.5, window.innerHeight * 0.5); } render(); },
+      scanFeedback: (t) => scanFeedbackSecurityClient(t)
     };
 
     let lastTs = performance.now();

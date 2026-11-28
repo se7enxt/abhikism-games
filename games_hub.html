@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>#ABHIKISM Interactive Games Arcade &amp; Unified Leaderboard | games.abhikism.com</title>
-  <meta name="description" content="Official #ABHIKISM Interactive Song Games Arcade (games.abhikism.com). Play DaakBaksher Gaan (v8.1.0) &amp; Taar Kata Ektara (v1.1.0), climb the unified multi-game leaderboard, and claim 9:16 Listener Certificates.">
+  <meta name="description" content="Official #ABHIKISM Interactive Song Games Arcade (games.abhikism.com). Play DaakBaksher Gaan (v8.2.0) &amp; Taar Kata Ektara (v1.2.0), climb the unified multi-game leaderboard, and claim 9:16 Listener Certificates.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://games.abhikism.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="#ABHIKISM Arcade">
   <meta property="og:title" content="#ABHIKISM Interactive Games Arcade &amp; Unified Leaderboard">
-  <meta property="og:description" content="Play #ABHIKISM's interactive Bengali song games — Taar Kata Ektara (v1.1.0) and DaakBaksher Gaan (v8.1.0) — and compete on the unified leaderboard.">
+  <meta property="og:description" content="Play #ABHIKISM's interactive Bengali song games — Taar Kata Ektara (v1.2.0) and DaakBaksher Gaan (v8.2.0) — and compete on the unified leaderboard.">
   <meta property="og:url" content="https://games.abhikism.com/">
   <meta property="og:image" content="https://songs.abhikism.com/assets/artworks/daakbaksher-gaan.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="#ABHIKISM Interactive Games Arcade | games.abhikism.com">
-  <meta name="twitter:description" content="Play Taar Kata Ektara (v1.1.0) &amp; DaakBaksher Gaan (v8.1.0) on the unified #ABHIKISM multi-game leaderboard.">
+  <meta name="twitter:description" content="Play Taar Kata Ektara (v1.2.0) &amp; DaakBaksher Gaan (v8.2.0) on the unified #ABHIKISM multi-game leaderboard.">
   <meta name="twitter:image" content="https://songs.abhikism.com/assets/artworks/daakbaksher-gaan.webp">
   <script type="application/ld+json">
   {
@@ -56,7 +56,7 @@
                 "genre": ["Music Game", "Word Game", "Arcade"],
                 "gamePlatform": "Web Browser",
                 "isAccessibleForFree": true,
-                "softwareVersion": "v8.1.0"
+                "softwareVersion": "v8.2.0"
               }
             }
           ]
@@ -411,6 +411,36 @@
       .featured-title { font-size: 26px; }
       .play-cta, .secondary-cta { width: 100%; justify-content: center; }
     }
+    .hub-fb-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      border-color: var(--ink-ochre) !important; color: var(--ink-ochre) !important;
+      white-space: nowrap; overflow: hidden;
+    }
+    .hub-fb-btn .fb-extra {
+      display: inline-block; max-width: 0; opacity: 0; overflow: hidden; vertical-align: bottom;
+      transition: max-width 0.30s ease, opacity 0.22s ease, margin-left 0.25s ease; margin-left: 0;
+    }
+    @media (hover: hover) and (min-width: 720px) {
+      .hub-fb-btn:hover .fb-extra,
+      .hub-fb-btn:focus-visible .fb-extra { max-width: 270px; opacity: 1; margin-left: 4px; }
+    }
+    .hub-modal-bg {
+      position: fixed; inset: 0; z-index: 300; background: rgba(8, 9, 14, 0.88);
+      backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center;
+      padding: 18px; overflow-y: auto;
+    }
+    .hub-modal-bg.open { display: flex; }
+    .hub-modal-card {
+      width: min(94vw, 540px); background: var(--card-bg); border: 2px solid var(--saul-crimson);
+      border-radius: 14px; padding: 22px 24px; color: var(--ink-cream);
+      box-shadow: 0 22px 55px rgba(0,0,0,0.72);
+    }
+    .hub-fb-cats { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 12px; }
+    .hub-fb-cat {
+      padding: 6px 12px; border-radius: 7px; border: 1.5px solid var(--border-subtle);
+      background: var(--card-elevated); color: var(--ink-cream); font-size: 12px; font-weight: 700; cursor: pointer;
+    }
+    .hub-fb-cat.active { background: var(--saul-crimson); border-color: var(--ink-ochre); color: #FFFFFF; }
   </style>
 </head>
 <body>
@@ -420,6 +450,7 @@
       <span class="brand-sub">games.abhikism.com</span>
     </div>
     <div class="header-links">
+      <button type="button" class="header-link hub-fb-btn" id="btn-hub-feedback" onclick="openHubFeedbackModal()" title="Add Feedback, Report Bugs &amp; Suggest Improvements">💬 <span>Feedback</span><span class="fb-extra">· Report Bugs &amp; Suggest Improvements</span></button>
       <button type="button" class="header-link" id="hub-theme-toggle" onclick="toggleHubContrast()">◐ High-Contrast</button>
       <a href="https://abhikism.com" class="header-link">🏠 abhikism.com</a>
       <a href="https://songs.abhikism.com" class="header-link">🎵 songs.abhikism.com</a>
@@ -439,7 +470,7 @@
       <div class="featured-hero-badge-strip">
         <span class="badge-flagship" style="background:#C41E28;">★ NEW · FEATURED GAME #2</span>
         <span class="badge-sub">TRACK WKS-007</span>
-        <span class="badge-sub">BUILD v1.1.0</span>
+        <span class="badge-sub">BUILD v1.2.0</span>
         <span class="badge-sub">FRENCH VOGUE FIRST-PERSON EDITION</span>
       </div>
 
@@ -471,7 +502,7 @@
 
       <div class="cta-row">
         <a href="./taar-kata-ektara/index.html" class="play-cta">
-          🌙 Play Taar Kata Ektara (v1.1.0) →
+          🌙 Play Taar Kata Ektara (v1.2.0) →
         </a>
         <a href="https://songs.abhikism.com/taar-kata-ektara/" class="secondary-cta" target="_blank" rel="noopener">
           🎧 Song Info &amp; Streaming Platforms
@@ -484,7 +515,7 @@
       <div class="featured-hero-badge-strip">
         <span class="badge-flagship">★ FEATURED GAME #1</span>
         <span class="badge-sub">TRACK WKS-003</span>
-        <span class="badge-sub">BUILD v8.1.0</span>
+        <span class="badge-sub">BUILD v8.2.0</span>
         <span class="badge-sub">SAUL BASS LINOCUT EDITION</span>
       </div>
 
@@ -516,7 +547,7 @@
 
       <div class="cta-row">
         <a href="./daakbaksher-gaan/index.html" class="play-cta">
-          📮 Play DaakBaksher Gaan Game (v8.1.0) →
+          📮 Play DaakBaksher Gaan Game (v8.2.0) →
         </a>
         <a href="https://songs.abhikism.com/daakbaksher-gaan/" class="secondary-cta" target="_blank" rel="noopener">
           🎧 Song Info &amp; Streaming Platforms
@@ -600,9 +631,45 @@
     </div>
     <div style="margin-top:4px;">Zero-Client-Exposure Privacy Architecture • Fully Protected User Data</div>
   </footer>
+
+  <!-- Consistent Auth-Gated Feedback, Bug Report & Improvement Modal -->
+  <div class="hub-modal-bg" id="hub-feedback-modal" role="dialog" aria-modal="true" aria-labelledby="hub-fb-title">
+    <div class="hub-modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;">
+        <div>
+          <h2 id="hub-fb-title" style="font-family:var(--font-display);font-size:20px;margin:0;">💬 Feedback, Bugs &amp; Improvements</h2>
+          <p style="font-size:12px;color:var(--ink-muted);margin-top:4px;">Share feedback, report a bug, or suggest improvements across #ABHIKISM Arcade.</p>
+        </div>
+        <button type="button" class="header-link" onclick="closeHubFeedbackModal()" aria-label="Close">✕</button>
+      </div>
+      <div id="hub-fb-auth-gate" style="display:none;text-align:center;padding:16px 8px;">
+        <p style="font-size:13.5px;color:var(--ink-cream);margin-bottom:14px;">🔒 Please sign in with your #ABHIKISM account below on the Arcade Hub (or create a free account) to submit feedback or report a bug.</p>
+        <button type="button" class="play-cta" style="padding:10px 18px;font-size:13px;" onclick="scrollToHubLoginForFeedback()">🔑 Sign In / Create Account</button>
+      </div>
+      <div id="hub-fb-form-pane" style="display:none;">
+        <div id="hub-fb-context" style="font-family:var(--font-mono);font-size:11px;color:var(--ink-ochre);background:#0E0F12;border:1px solid var(--border-subtle);border-radius:6px;padding:6px 10px;margin-bottom:10px;"></div>
+        <div class="hub-fb-cats" id="hub-fb-cats">
+          <button type="button" class="hub-fb-cat active" data-fb-cat="feedback" onclick="selectHubFeedbackCat('feedback')">💬 Feedback</button>
+          <button type="button" class="hub-fb-cat" data-fb-cat="bug" onclick="selectHubFeedbackCat('bug')">🐞 Report Bug</button>
+          <button type="button" class="hub-fb-cat" data-fb-cat="improvement" onclick="selectHubFeedbackCat('improvement')">✨ Improvement</button>
+        </div>
+        <textarea id="hub-fb-msg" rows="4" maxlength="1500" placeholder="Share feedback, describe any bug, or suggest an improvement (plain text only)..." style="width:100%;padding:10px;border-radius:8px;border:1.5px solid var(--border-subtle);background:#0E0F12;color:var(--ink-cream);font-family:var(--font-body);font-size:13px;resize:vertical;" oninput="document.getElementById('hub-fb-count').textContent=this.value.length+' / 1500'"></textarea>
+        <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-muted);margin:4px 0 10px;">
+          <span>🛡️ Anti-injection security screening active (no HTML/code/formulas).</span>
+          <span id="hub-fb-count">0 / 1500</span>
+        </div>
+        <input type="text" id="hub-fb-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;">
+        <div id="hub-fb-status" style="display:none;font-size:12px;font-weight:700;margin:8px 0;"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button type="button" class="play-cta" id="btn-hub-fb-send" style="padding:9px 18px;font-size:13px;" onclick="submitHubFeedback()">📨 Send Feedback</button>
+          <button type="button" class="header-link" onclick="closeHubFeedbackModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
     (function() {
-      const HUB_REGISTRY = [{"game_id": "taar-kata-ektara", "game_title": "Taar Kata Ektara: Five Pre-Dawn Worlds", "game_title_bn": "তার কাটা একতারা — পাঁচ ভোরের জগৎ", "category": "song", "song_id": "taar-kata-ektara", "song_title": "Taar Kata Ektara", "catalog_code": "WKS-007", "status": "live", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.1.0", "play_url": "https://games.abhikism.com/taar-kata-ektara/", "song_url": "https://songs.abhikism.com/taar-kata-ektara/", "scoring_label": "Dawn Speed Index (PTS)", "updated_at": "2026-11-28"}, {"game_id": "daakbaksher-gaan", "game_title": "DaakBaksher Gaan: Letters in the Wind", "game_title_bn": "ডাকবাক্সের গান — বাতাসের চিঠি", "category": "song", "song_id": "daakbaksher-gaan", "song_title": "DaakBaksher Gaan", "catalog_code": "WKS-003", "status": "live", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v8.1.0", "play_url": "https://games.abhikism.com/daakbaksher-gaan/", "song_url": "https://songs.abhikism.com/daakbaksher-gaan/", "scoring_label": "Arcade Speed Index (PTS)", "updated_at": "2026-11-28"}, {"game_id": "aar-ektu-kheli", "game_title": "Aar Ektu Kheli", "game_title_bn": "আর একটু খেলি", "category": "song", "song_id": "aar-ektu-kheli", "song_title": "Aar Ektu Kheli", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/aar-ektu-kheli/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "ami-raja", "game_title": "Ami Raja", "game_title_bn": "আমি রাজা", "category": "song", "song_id": "ami-raja", "song_title": "Ami Raja", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/ami-raja/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "hey-bhoboghurey", "game_title": "Hey Bhoboghurey", "game_title_bn": "হে ভবঘুরে", "category": "song", "song_id": "hey-bhoboghurey", "song_title": "Hey Bhoboghurey", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/hey-bhoboghurey/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}];
+      const HUB_REGISTRY = [{"game_id": "taar-kata-ektara", "game_title": "Taar Kata Ektara: Five Pre-Dawn Worlds", "game_title_bn": "তার কাটা একতারা — পাঁচ ভোরের জগৎ", "category": "song", "song_id": "taar-kata-ektara", "song_title": "Taar Kata Ektara", "catalog_code": "WKS-007", "status": "live", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.2.0", "play_url": "https://games.abhikism.com/taar-kata-ektara/", "song_url": "https://songs.abhikism.com/taar-kata-ektara/", "scoring_label": "Dawn Speed Index (PTS)", "updated_at": "2026-11-28"}, {"game_id": "daakbaksher-gaan", "game_title": "DaakBaksher Gaan: Letters in the Wind", "game_title_bn": "ডাকবাক্সের গান — বাতাসের চিঠি", "category": "song", "song_id": "daakbaksher-gaan", "song_title": "DaakBaksher Gaan", "catalog_code": "WKS-003", "status": "live", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v8.2.0", "play_url": "https://games.abhikism.com/daakbaksher-gaan/", "song_url": "https://songs.abhikism.com/daakbaksher-gaan/", "scoring_label": "Arcade Speed Index (PTS)", "updated_at": "2026-11-28"}, {"game_id": "aar-ektu-kheli", "game_title": "Aar Ektu Kheli", "game_title_bn": "আর একটু খেলি", "category": "song", "song_id": "aar-ektu-kheli", "song_title": "Aar Ektu Kheli", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/aar-ektu-kheli/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "ami-raja", "game_title": "Ami Raja", "game_title_bn": "আমি রাজা", "category": "song", "song_id": "ami-raja", "song_title": "Ami Raja", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/ami-raja/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}, {"game_id": "hey-bhoboghurey", "game_title": "Hey Bhoboghurey", "game_title_bn": "হে ভবঘুরে", "category": "song", "song_id": "hey-bhoboghurey", "song_title": "Hey Bhoboghurey", "catalog_code": "", "status": "coming_soon", "leaderboard_tab": "Unified_Games_Leaderboard", "current_version": "v1.0.0", "play_url": "https://games.abhikism.com/hey-bhoboghurey/", "song_url": "https://songs.abhikism.com/", "scoring_label": "Score (PTS)"}];
       const HUB_SEED_LB = [];
       const HUB_DEFAULT_WEBHOOK = "https://script.google.com/macros/s/AKfycbwETZpwdI0c7xguhbsMv27F-86LKlXi9xnH4WtC1WLROeUCzqhV_2ONZtIrU0lXWA_1Xw/exec";
       const saved = localStorage.getItem('abhikism_dbg_theme_mode');
@@ -802,6 +869,10 @@
           } catch (_) {}
           if (msgEl) msgEl.style.display = 'none';
           syncHubAuthUI();
+          if (hubState.pendingFeedbackAfterAuth) {
+            hubState.pendingFeedbackAfterAuth = false;
+            openHubFeedbackModal();
+          }
         } else if (msgEl) {
           msgEl.style.display = 'block';
           msgEl.textContent = 'Unable to reach cloud auth service. Please check your connection and try again.';
@@ -921,6 +992,100 @@
         hubState.loading = false;
         renderHubGamesTabs();
       }
+
+      hubState.fbCat = 'feedback';
+      hubState.pendingFeedbackAfterAuth = false;
+      function scanHubFeedbackSecurity(rawText) {
+        const text = String(rawText ?? '');
+        if (/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F\u202A-\u202E\u2066-\u2069]/.test(text)) {
+          return { safe: false, code: 'CONTROL_CHARS', reason: 'Hidden control or invisible override characters are not allowed.' };
+        }
+        const trimmed = text.trim();
+        if (trimmed.length < 6) return { safe: false, code: 'TOO_SHORT', reason: 'Please write at least 6 characters.' };
+        if (trimmed.length > 1500) return { safe: false, code: 'TOO_LONG', reason: 'Message must be 1,500 characters or fewer.' };
+        const rules = [
+          { code: 'HTML_XSS', re: /<\s*\/?\s*(script|iframe|object|embed|svg|style|link|meta|form|input|img|video|audio|base|applet)\b/i, reason: 'HTML tags or embedded scripts are blocked for security.' },
+          { code: 'JS_URI', re: /\b(?:javascript|vbscript|livescript)\s*:|data\s*:\s*text\/html/i, reason: 'Executable URI schemes are blocked for security.' },
+          { code: 'DOM_EVENT', re: /\bon(?:click|dblclick|load|error|mouseover|mouseenter|focus|blur|submit|input|change|keydown|keyup)\s*=/i, reason: 'Inline script event handlers are blocked for security.' },
+          { code: 'JS_EXEC', re: /\b(?:eval|Function|setTimeout|setInterval|XMLHttpRequest|fetch|importScripts)\s*\(|\b(?:document\.cookie|document\.write|window\.location|localStorage|sessionStorage|__proto__|prototype\.constructor)\b/i, reason: 'Executable JavaScript or browser storage code is blocked for security.' },
+          { code: 'SHEET_FORMULA', re: /(?:^|\n)\s*[=+\-@]\s*(?:IMPORTHTML|IMPORTXML|IMPORTDATA|IMPORTRANGE|IMPORTFEED|WEBSERVICE|HYPERLINK|QUERY|CMD|EXEC|SYSTEM|SHELL|SUM|CONCATENATE|INDEX|MATCH)\s*\(/i, reason: 'Spreadsheet formula commands are blocked for security.' },
+          { code: 'LEADING_FORMULA', re: /^\s*=/, reason: 'Messages cannot start with "=" (spreadsheet formula protection).' },
+          { code: 'SQL_INJECTION', re: /\b(?:UNION\s+ALL\s+SELECT|UNION\s+SELECT|DROP\s+TABLE|DROP\s+DATABASE|DELETE\s+FROM|TRUNCATE\s+TABLE|INSERT\s+INTO|ALTER\s+TABLE|XP_CMDSHELL)\b|'\s*(?:OR|AND)\s*['"]?\d+['"]?\s*=\s*['"]?\d+/i, reason: 'SQL query patterns are blocked for security.' },
+          { code: 'SHELL_CODE_EXEC', re: /\b(?:rm\s+-rf|curl\s+https?:|wget\s+https?:|bash\s+-c|sh\s+-c|powershell\b|cmd\.exe|os\.system\s*\(|subprocess\.|require\s*\(\s*['"]child_process|process\.env\b|<\?php|\$\{[^}]{1,80}\}|\{\{[^}]{1,80}\}\})/i, reason: 'Shell commands, template expressions, or server code patterns are blocked for security.' },
+          { code: 'PROMPT_INJECTION', re: /\b(?:ignore\s+(?:all\s+)?(?:previous|prior|above)\s+instructions?|disregard\s+(?:all\s+)?(?:system|previous)\s+(?:prompt|instructions?)|reveal\s+(?:your\s+)?(?:system\s+prompt|api\s*key|admin_secret|secret|password|credentials|tokens?)|dump\s+(?:all\s+)?(?:users?|emails?|passwords?|database|sheet)|exfiltrate|bypass\s+auth(?:entication)?|override\s+security|jailbreak)\b/i, reason: 'System override or data-extraction instructions are blocked for security.' }
+        ];
+        for (const r of rules) { if (r.re.test(trimmed)) return { safe: false, code: r.code, reason: r.reason }; }
+        return { safe: true, code: 'PASSED_CLIENT', cleaned: trimmed.replace(/[<>]/g, '') };
+      }
+      window.scanHubFeedbackSecurity = scanHubFeedbackSecurity;
+      window.selectHubFeedbackCat = function(c) {
+        hubState.fbCat = ['bug', 'improvement', 'feedback'].includes(c) ? c : 'feedback';
+        document.querySelectorAll('#hub-fb-cats .hub-fb-cat').forEach(b => b.classList.toggle('active', b.dataset.fbCat === hubState.fbCat));
+      };
+      window.openHubFeedbackModal = function() {
+        const st = document.getElementById('hub-fb-status');
+        if (st) { st.style.display = 'none'; st.textContent = ''; }
+        const authed = Boolean(hubState.user && hubState.token);
+        document.getElementById('hub-fb-auth-gate').style.display = authed ? 'none' : 'block';
+        document.getElementById('hub-fb-form-pane').style.display = authed ? 'block' : 'none';
+        if (authed) {
+          document.getElementById('hub-fb-context').textContent = `User: @${hubState.user} • Surface: Arcade Hub (games.abhikism.com) • ${window.innerWidth}×${window.innerHeight}`;
+        }
+        document.getElementById('hub-feedback-modal').classList.add('open');
+      };
+      window.closeHubFeedbackModal = function() {
+        document.getElementById('hub-feedback-modal').classList.remove('open');
+      };
+      window.scrollToHubLoginForFeedback = function() {
+        hubState.pendingFeedbackAfterAuth = true;
+        closeHubFeedbackModal();
+        const sec = document.getElementById('hub-lb-auth-gate');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const uEl = document.getElementById('hub-auth-username');
+        if (uEl) setTimeout(() => { try { uEl.focus(); } catch (_) {} }, 250);
+      };
+      window.submitHubFeedback = async function() {
+        const st = document.getElementById('hub-fb-status');
+        const inp = document.getElementById('hub-fb-msg');
+        const btn = document.getElementById('btn-hub-fb-send');
+        const showSt = (ok, txt) => { st.style.display = 'block'; st.style.color = ok ? '#90FF6C' : '#FF6B6B'; st.textContent = txt; };
+        if (!hubState.user || !hubState.token) { openHubFeedbackModal(); return; }
+        if ((document.getElementById('hub-fb-hp')?.value || '').trim()) return;
+        const sec = scanHubFeedbackSecurity(inp.value);
+        if (!sec.safe) { showSt(false, '🛡️ Security Check Blocked: ' + sec.reason); return; }
+        const wh = localStorage.getItem('abhikism_dbg_webhook_url') || HUB_DEFAULT_WEBHOOK || '';
+        if (!wh.startsWith('https://script.google.com/')) { showSt(false, 'Feedback endpoint unavailable.'); return; }
+        btn.disabled = true; btn.textContent = '🛡️ Checking & Sending…';
+        try {
+          const r = await fetch(wh, {
+            method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({
+              action: 'submit_feedback',
+              session_token: hubState.token,
+              feedback_category: hubState.fbCat || 'feedback',
+              message: sec.cleaned,
+              game_id: 'arcade-hub',
+              game_title: '#ABHIKISM Arcade Hub',
+              game_version: 'v8.2.0',
+              level: 0,
+              device_info: `${window.innerWidth}x${window.innerHeight} | ${window.innerWidth <= 768 ? 'Mobile' : 'Desktop'}`,
+              source_origin: window.location.hostname || 'games.abhikism.com'
+            })
+          });
+          const d = await r.json().catch(() => null);
+          if (d && d.ok) {
+            inp.value = '';
+            document.getElementById('hub-fb-count').textContent = '0 / 1500';
+            showSt(true, '✓ ' + (d.message || 'Thank you — feedback received!'));
+          } else {
+            showSt(false, '🛡️ ' + ((d && d.message) || 'Submission could not be accepted.'));
+          }
+        } catch (_) {
+          showSt(false, 'Network error sending feedback. Please retry.');
+        } finally {
+          btn.disabled = false; btn.textContent = '📨 Send Feedback';
+        }
+      };
 
       restoreHubSession();
     })();
